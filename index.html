@@ -1,0 +1,2262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jonah Dichter — Portfolio</title>
+  <meta name="description" content="Jonah Dichter is a ceramic artist based in Rochester, NY. His practice centers on bricks, baseballs, and vessels — objects that raise questions about labor, familiarity, and what a material remembers." />
+  <meta property="og:title" content="Jonah Dichter — Ceramics" />
+  <meta property="og:description" content="Bricks, baseballs, and vessels in fired stoneware. Ceramic practice organized around objects and the questions they raise." />
+  <meta property="og:image" content="https://jonahdichter.com/web/hero-new.png" />
+  <meta property="og:url" content="https://jonahdichter.com" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jonah Dichter — Portfolio" />
+  <meta name="twitter:description" content="Bricks, baseballs, and vessels in fired stoneware. Ceramic practice organized around objects and the questions they raise." />
+  <meta name="twitter:image" content="https://jonahdichter.com/web/hero-new.png" />
+  <link rel="canonical" href="https://jonahdichter.com" />
+  <link rel="icon" type="image/png" href="favicon.png?v=2" />
+  <link rel="preload" as="image" href="web/hero-broken.png" />
+  <link rel="preload" as="image" href="web/hero-new.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --clay:      #3d6fcc;
+      --ember:     #c42040;
+      --ash:       #111218;
+      --smoke:     #181824;
+      --parchment: #e8ecf5;
+      --chalk:     #d4d8ea;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--ash);
+      color: var(--chalk);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: none;
+    }
+
+    /* ── Card focus effect ── */
+    .projects-featured, .projects-archive { transition: none; }
+    .project-card {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity  0.4s ease;
+    }
+    .grid-active .project-card {
+      transform: scale(0.93); opacity: 0.5;
+    }
+    .grid-active .project-card.card-focused {
+      transform: scale(1.05); opacity: 1; z-index: 2;
+    }
+
+    /* ── Scrollbar ── */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--ash); }
+    ::-webkit-scrollbar-thumb { background: var(--ember); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--clay); }
+
+    /* ── Cursor ── */
+    .cursor {
+      position: fixed; top: 0; left: 0;
+      width: 12px; height: 12px;
+      background: var(--ember); border-radius: 50%;
+      pointer-events: none; z-index: 9999;
+      transform: translate(-50%, -50%);
+    }
+    .cursor-ring {
+      position: fixed; top: 0; left: 0;
+      width: 36px; height: 36px;
+      border: 1px solid var(--clay); border-radius: 50%;
+      pointer-events: none; z-index: 9998;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+    }
+
+    /* ── Noise ── */
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none; z-index: 9997; opacity: 0.4;
+    }
+
+    /* ── Page cover ── */
+    #page-cover {
+      position: fixed; inset: 0; background: var(--ash);
+      z-index: 10000; pointer-events: none;
+      transition: opacity 0.9s ease;
+    }
+    #page-cover.fade-out { opacity: 0; }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.4rem 3rem;
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    nav.nav-hidden { transform: translateY(-110%); }
+    nav::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(to bottom, rgba(17,18,24,0.96) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem; font-weight: 900; letter-spacing: 0.08em;
+      color: var(--parchment); text-decoration: none; position: relative;
+    }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; position: relative; }
+    .nav-links a {
+      color: var(--clay); text-decoration: none;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.2s, transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+      display: inline-block;
+    }
+    .nav-links a:hover { color: var(--parchment); }
+
+    /* ── Hero ── */
+    #hero {
+      min-height: 100vh; display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      position: relative; overflow: hidden;
+    }
+    .hero-left {
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 6rem 3rem 5rem; position: relative; z-index: 2;
+    }
+    .hero-eyebrow {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1.5rem;
+    }
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(4rem, 7vw, 7.5rem);
+      font-weight: 900; line-height: 0.9;
+      color: var(--parchment); margin-bottom: 2rem;
+    }
+    .hero-name em { font-style: italic; color: var(--clay); display: block; }
+    .hero-tagline {
+      max-width: 360px; color: var(--clay);
+      font-size: 0.8rem; line-height: 1.8; margin-bottom: 3rem;
+      border-left: 2px solid var(--ember); padding-left: 1.2rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 1rem;
+      color: var(--parchment); text-decoration: none;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: gap 0.3s;
+    }
+    .hero-cta:hover { gap: 1.6rem; }
+    .hero-cta .arrow { width: 40px; height: 1px; background: var(--ember); position: relative; }
+    .hero-cta .arrow::after {
+      content: ''; position: absolute; right: 0; top: -3px;
+      width: 6px; height: 6px;
+      border-right: 1px solid var(--ember); border-top: 1px solid var(--ember);
+      transform: rotate(45deg);
+    }
+    .hero-right { position: relative; overflow: hidden; cursor: crosshair; }
+    .hero-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain; opacity: 1;
+      will-change: transform;
+    }
+    .hero-placeholder {
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, #111218 0%, #181824 50%, #111218 100%);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-placeholder-label {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--clay); opacity: 0.3;
+      border: 1px solid var(--clay); padding: 0.6rem 1.2rem;
+    }
+    .hero-index {
+      position: absolute; bottom: 2rem; right: 2rem;
+      font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); opacity: 0.5;
+    }
+
+    /* ── Sections ── */
+    section { padding: 7rem 3rem; }
+    .section-label {
+      font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .section-label::after {
+      content: ''; flex: 1; max-width: 60px;
+      height: 1px; background: var(--ember); opacity: 0.5;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      font-weight: 900; line-height: 1; color: var(--parchment);
+    }
+    .section-title em { font-style: italic; color: var(--clay); }
+
+    /* ── Work ── */
+    #work { background: var(--smoke); }
+    .work-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 4rem;
+    }
+    .work-series { font-size: 0.6rem; letter-spacing: 0.2em; color: var(--clay); opacity: 0.6; }
+
+    /* ── Project card base ── */
+    .project-card {
+      position: relative; overflow: hidden;
+      background: var(--smoke);
+    }
+    .project-card img.project-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: cover;
+      filter: sepia(10%) contrast(1.05);
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .project-card:hover img.project-img { transform: scale(1.06); }
+    .project-placeholder {
+      position: absolute; inset: 0;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center; gap: 0.8rem;
+      transition: transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .project-card:hover .project-placeholder { transform: scale(1.04); }
+    .project-placeholder::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, var(--bg-a, #181824) 0%, var(--bg-b, #1e1e2e) 100%);
+    }
+    .project-placeholder-cross { position: absolute; inset: 0; pointer-events: none; }
+    .project-placeholder-cross::before,
+    .project-placeholder-cross::after {
+      content: ''; position: absolute;
+      background: var(--accent, #c8a882); opacity: 0.08;
+    }
+    .project-placeholder-cross::before { left: 0; right: 0; top: 50%; height: 1px; }
+    .project-placeholder-cross::after  { top: 0; bottom: 0; left: 50%; width: 1px; }
+    .project-placeholder-text {
+      position: relative; z-index: 1;
+      font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent, #c8a882); opacity: 0.35;
+      border: 1px solid var(--accent, #c8a882); padding: 0.4rem 0.9rem;
+    }
+    .project-card::after {
+      content: 'View Series';
+      position: absolute; top: 50%; left: 50%;
+      transform: translate(-50%, -50%) scale(0.85);
+      z-index: 10;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--parchment);
+      background: rgba(196,32,64,0.85);
+      padding: 0.6rem 1.2rem;
+      opacity: 0; transition: opacity 0.3s, transform 0.3s;
+      pointer-events: none; white-space: nowrap;
+    }
+    .project-card:hover::after { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    .project-label {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
+      padding: 1rem 1.5rem;
+      background: linear-gradient(to top, rgba(17,18,24,0.88) 0%, transparent 100%);
+      display: flex; justify-content: space-between; align-items: flex-end;
+    }
+    .project-label-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--parchment);
+    }
+    .project-label-year { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); }
+
+    /* ── Featured cards ── */
+    .projects-featured {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.5rem; margin-bottom: 1.5rem;
+    }
+    .projects-featured .project-card { aspect-ratio: 3/2; }
+    .projects-featured .project-label-title { font-size: 1.15rem; }
+
+    /* ── Archive divider ── */
+    .projects-archive-divider {
+      display: flex; align-items: center; gap: 1.2rem;
+      margin-bottom: 1.5rem; margin-top: 1rem;
+    }
+    .projects-archive-divider span {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--chalk); opacity: 0.75; white-space: nowrap;
+    }
+    .projects-archive-divider::before,
+    .projects-archive-divider::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--clay); opacity: 0.3;
+    }
+
+    /* ── Earlier work toggle button ── */
+    .earlier-work-toggle {
+      display: flex; align-items: center; gap: 1.2rem;
+      width: 100%; background: none; border: none; cursor: pointer;
+      margin-bottom: 0; margin-top: 1rem; padding: 0.6rem 0;
+      text-align: left;
+    }
+    .earlier-work-toggle::before,
+    .earlier-work-toggle::after {
+      content: ''; flex: 1; height: 1px;
+      background: var(--clay); opacity: 0.3;
+    }
+    .earlier-work-toggle span {
+      font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--clay); white-space: nowrap;
+      font-family: 'IBM Plex Mono', monospace;
+      transition: color 0.2s;
+      display: flex; align-items: center; gap: 0.7rem;
+      border: 1px solid rgba(61,111,204,0.25);
+      padding: 0.35rem 0.9rem;
+    }
+    .earlier-work-toggle:hover span { color: var(--parchment); border-color: rgba(61,111,204,0.5); }
+    .earlier-work-toggle .toggle-arrow {
+      display: inline-block;
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      font-style: normal; letter-spacing: 0; opacity: 1;
+    }
+    .earlier-work-toggle.open .toggle-arrow { transform: rotate(180deg); }
+
+    /* collapsible grid */
+    .projects-archive--older {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+      overflow: hidden;
+      max-height: 0;
+      opacity: 0;
+      margin-top: 0;
+      transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1),
+                  opacity   0.4s ease,
+                  margin-top 0.35s ease;
+    }
+    .projects-archive--older.open {
+      max-height: 1000px;
+      opacity: 1;
+      margin-top: 1.5rem;
+    }
+
+    /* ── Detail cards (studies / individuals) ── */
+    .projects-detail {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem; margin-bottom: 1rem;
+    }
+    .projects-detail .project-card { aspect-ratio: 2/3; }
+    .projects-detail .project-label { padding: 0.75rem 1rem; }
+    .projects-detail .project-label-title { font-size: 0.85rem; }
+    .projects-detail .project-label-year { font-size: 0.55rem; }
+
+    /* ── Archive cards ── */
+    .projects-archive {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.75rem;
+    }
+    .projects-archive .project-card { aspect-ratio: 2/3; }
+    .projects-archive .project-label { padding: 0.75rem 1rem; }
+    .projects-archive .project-label-title { font-size: 0.85rem; }
+    .projects-archive .project-label-year { font-size: 0.55rem; }
+
+    /* ── Earlier work — de-emphasized ── */
+    .projects-archive--older .project-card {
+      opacity: 0.45;
+      filter: saturate(0.5);
+      transition: opacity 0.4s ease, filter 0.4s ease,
+                  transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .projects-archive--older .project-card:hover {
+      opacity: 1; filter: saturate(1);
+    }
+
+    /* ── Statement section ── */
+    #statement {
+      background: var(--smoke);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start;
+    }
+    .statement-left { position: sticky; top: 8rem; }
+    .statement-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+      font-weight: 400; font-style: italic;
+      line-height: 1.45; color: var(--parchment);
+      padding-top: 2rem; position: relative;
+    }
+    .statement-quote::before {
+      content: '"';
+      position: absolute; top: -1.5rem; left: -1.5rem;
+      font-size: 10rem; color: var(--ember); opacity: 0.1;
+      font-family: 'Playfair Display', serif; line-height: 1;
+      pointer-events: none;
+    }
+    .statement-body p {
+      margin-bottom: 1.4rem; color: var(--clay);
+      font-size: 0.8rem; line-height: 2;
+    }
+    .statement-body p:first-of-type { color: var(--chalk); }
+
+    /* ── CV ── */
+    #cv { background: var(--ash); }
+    .cv-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; margin-top: 4rem; }
+    .cv-section { margin-bottom: 3rem; }
+    .cv-section-title {
+      font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--ember); margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem; border-bottom: 1px solid rgba(196,32,64,0.2);
+    }
+    .cv-item { margin-bottom: 1.5rem; }
+    .cv-item-header {
+      display: flex; justify-content: space-between; align-items: baseline;
+      margin-bottom: 0.3rem; gap: 1rem;
+    }
+    .cv-item-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--parchment);
+    }
+    .cv-item-date { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--clay); opacity: 0.6; white-space: nowrap; }
+    .cv-item-sub { font-size: 0.78rem; color: var(--chalk); line-height: 1.7; }
+    .cv-item-detail { font-size: 0.72rem; color: var(--clay); margin-top: 0.2rem; line-height: 1.6; }
+
+    /* ── Contact ── */
+    #contact { background: var(--smoke); text-align: center; padding: 9rem 3rem; }
+    #contact .section-label { justify-content: center; }
+    #contact .section-label::after { display: none; }
+    .contact-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 7vw, 8rem);
+      font-weight: 900; line-height: 0.9;
+      color: var(--parchment); margin: 1.5rem auto 3rem;
+    }
+    .contact-title em { font-style: italic; color: var(--clay); display: block; }
+    .contact-email {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(1rem, 2vw, 1.4rem);
+      color: var(--clay); text-decoration: none; transition: color 0.2s;
+    }
+    .contact-email:hover { color: var(--parchment); }
+    .contact-links {
+      display: flex; justify-content: center; gap: 4rem;
+      list-style: none; margin-top: 3rem;
+    }
+    .contact-links a {
+      color: var(--clay); text-decoration: none;
+      font-size: 0.7rem; letter-spacing: 0.2em; text-transform: uppercase;
+      transition: color 0.2s; position: relative;
+    }
+    .contact-links a::after {
+      content: ''; position: absolute; left: 0; bottom: -3px;
+      width: 0; height: 1px; background: var(--ember); transition: width 0.3s;
+    }
+    .contact-links a:hover { color: var(--parchment); }
+    .contact-links a:hover::after { width: 100%; }
+
+    /* ── Footer ── */
+    footer {
+      background: var(--ash); padding: 2rem 3rem;
+      display: flex; justify-content: space-between; align-items: center;
+      border-top: 1px solid rgba(61,111,204,0.08);
+    }
+    footer span { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); opacity: 0.4; }
+
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.35s; }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .lightbox.active { opacity: 1; pointer-events: all; }
+    .lightbox-backdrop { position: absolute; inset: 0; background: rgba(8,7,7,0.97); }
+    .lightbox-content {
+      position: relative; z-index: 2; width: 90vw; max-width: 1100px;
+      max-height: 90vh;
+      display: flex; flex-direction: column;
+      transform: scale(0.94) translateY(22px);
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .lightbox.active .lightbox-content { transform: scale(1) translateY(0); }
+    .tile-grid-wrap { position: relative; flex: 1; min-height: 0; overflow-y: auto; }
+    .tile-grid { display: grid; gap: 3px; width: 100%; }
+    .tile-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .tile-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .tile-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    /* ── Tile ── */
+    .tile {
+      overflow: hidden; aspect-ratio: 1; position: relative;
+      opacity: 0; transform: translateZ(0) scale(0.9);
+      transition: opacity 0.28s ease, transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, opacity;
+      cursor: none;
+    }
+    .tile.in { opacity: 1; transform: translateZ(0) scale(1); }
+    .tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* ── Tile hover caption ── */
+    .tile-caption {
+      position: absolute; bottom: 0; left: 0; right: 0; z-index: 3;
+      padding: 0.55rem 0.7rem 0.6rem;
+      background: linear-gradient(to top, rgba(8,7,7,0.9) 0%, transparent 100%);
+      opacity: 0; transform: translateY(4px);
+      transition: opacity 0.22s ease, transform 0.22s ease;
+      pointer-events: none;
+    }
+    .tile:hover .tile-caption { opacity: 1; transform: translateY(0); }
+    .tile-caption-text {
+      font-size: 0.55rem; letter-spacing: 0.12em;
+      color: var(--chalk); line-height: 1.4;
+      display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    .tile-placeholder {
+      width: 100%; height: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .tile-placeholder span {
+      font-size: 0.55rem; letter-spacing: 0.2em; text-transform: uppercase;
+      opacity: 0.35; border: 1px solid currentColor; padding: 0.3rem 0.7rem;
+    }
+
+    /* ── Statement overlay ── */
+    .lb-statement-panel {
+      position: absolute; inset: 0; z-index: 10;
+      background: rgba(8,7,7,0.97);
+      display: flex; align-items: center; justify-content: center;
+      padding: 2.5rem 3rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease;
+      cursor: none;
+    }
+    .lb-statement-panel.visible { opacity: 1; pointer-events: all; }
+    .lb-statement-text {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: clamp(0.95rem, 1.6vw, 1.3rem);
+      color: var(--parchment); line-height: 1.75; max-width: 680px;
+      border-left: 2px solid var(--ember); padding-left: 1.8rem;
+    }
+
+    /* ── Lightbox meta bar ── */
+    .lightbox-meta {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-shrink: 0;
+      padding: 1.2rem 0 0;
+      opacity: 0; transform: translateY(8px);
+      transition: all 0.4s 0.25s ease;
+    }
+    .lightbox.active .lightbox-meta { opacity: 1; transform: translateY(0); }
+    .lightbox-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--parchment);
+    }
+    .lightbox-title span {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.2em;
+      color: var(--clay); margin-left: 1rem; text-transform: uppercase;
+    }
+    .lightbox-controls { display: flex; gap: 1.5rem; align-items: center; }
+    .lb-stmt-btn {
+      background: none; border: 1px solid rgba(61,111,204,0.3); cursor: none;
+      color: var(--clay); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+      padding: 0.35rem 0.85rem; transition: all 0.2s;
+    }
+    .lb-stmt-btn:hover { color: var(--parchment); border-color: var(--clay); }
+    .lb-stmt-btn.active { color: var(--parchment); border-color: var(--ember); }
+    .lightbox-close {
+      background: none; border: 1px solid var(--ember); cursor: none;
+      color: var(--ember); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      padding: 0.45rem 1rem;
+    }
+    .lightbox-close:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(196,32,64,0.15); }
+
+    /* ── Full-screen image view ──
+       Sits above the lightbox (z-index 3000).
+       The image scales in from ~0.88 → 1 + fade, giving the
+       "tiles into this image filling the screen" feel.
+    ── */
+    .fs-view {
+      position: fixed; inset: 0; z-index: 3000;
+      background: #080707;
+      display: flex; flex-direction: column;
+      pointer-events: none; opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+    .fs-view.active { opacity: 1; pointer-events: all; }
+
+    .fs-img-area {
+      flex: 1; position: relative; overflow: hidden;
+    }
+    .fs-img {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+      object-fit: contain;
+      opacity: 0;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.3s ease;
+      will-change: transform, opacity;
+    }
+
+    /* Prev / Next arrow buttons */
+    .fs-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: none; border: none; cursor: none;
+      color: rgba(61,111,204,0.5);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 1.4rem; padding: 1rem 1.4rem;
+      transition: color 0.2s;
+      z-index: 2;
+    }
+    .fs-arrow:hover { color: var(--parchment); }
+    .fs-arrow.prev { left: 0; }
+    .fs-arrow.next { right: 0; }
+    .fs-arrow:disabled { opacity: 0.15; pointer-events: none; }
+
+    /* ── Persistent caption bar ── */
+    .fs-caption-bar {
+      flex-shrink: 0;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0.9rem 2rem;
+      background: rgba(8,7,7,0.92);
+      border-top: 1px solid rgba(61,111,204,0.08);
+    }
+    .fs-caption-left { display: flex; flex-direction: column; gap: 0.2rem; }
+    .fs-caption-text {
+      font-family: 'Playfair Display', serif; font-style: italic;
+      font-size: 0.95rem; color: var(--parchment);
+    }
+    .fs-caption-series {
+      font-size: 0.58rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--clay); opacity: 0.6;
+    }
+    .fs-caption-right { display: flex; gap: 2rem; align-items: center; }
+    .fs-counter {
+      font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); opacity: 0.5;
+    }
+    .fs-back {
+      background: none; border: 1px solid var(--ember); cursor: none;
+      color: var(--ember); font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+      transition: color 0.2s, border-color 0.2s, background 0.2s;
+      padding: 0.45rem 1rem;
+    }
+    .fs-back:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(196,32,64,0.15); }
+
+    /* ── Hamburger button ── */
+    .nav-hamburger {
+      display: none;
+      background: none; border: none; cursor: pointer;
+      position: relative; z-index: 102;
+      width: 28px; height: 20px;
+      flex-direction: column; justify-content: space-between;
+      padding: 0;
+    }
+    .nav-hamburger span {
+      display: block; width: 100%; height: 2px;
+      background: var(--parchment);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+      transform-origin: center;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
+
+    /* ── Mobile overlay nav ── */
+    .mobile-nav-overlay {
+      display: none;
+      position: fixed; inset: 0; z-index: 101;
+      background: rgba(17,18,24,0.97);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 2.5rem;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.35s ease;
+    }
+    .mobile-nav-overlay.open { opacity: 1; pointer-events: all; }
+    .mobile-nav-overlay a {
+      color: var(--parchment); text-decoration: none;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .mobile-nav-overlay a:hover { color: var(--ember); }
+    .mobile-nav-close {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: none; border: 1px solid rgba(61,111,204,0.3);
+      color: var(--clay); cursor: pointer;
+      font-size: 1.1rem; line-height: 1;
+      width: 2.4rem; height: 2.4rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: color 0.2s, border-color 0.2s;
+    }
+    .mobile-nav-close:hover { color: var(--parchment); border-color: var(--clay); }
+
+    /* ── Touch devices: hide custom cursor ── */
+    @media (hover: none) and (pointer: coarse) {
+      body { cursor: auto !important; }
+      .cursor, .cursor-ring { display: none !important; }
+      .tile { cursor: pointer; }
+      .fs-arrow, .lb-stmt-btn, .lightbox-close, .fs-back { cursor: pointer; }
+      .lb-statement-panel { cursor: pointer; }
+      .project-card::after { display: none; }
+    }
+
+    /* ── Responsive: Tablet ── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .mobile-nav-overlay { display: flex; }
+
+      #hero { grid-template-columns: 1fr; min-height: auto; }
+      .hero-right { height: 55vw; position: relative; }
+      .hero-left { padding: 7rem 1.5rem 3rem; }
+      .hero-name { font-size: clamp(3rem, 10vw, 5.5rem); }
+      .hero-tagline { font-size: 0.75rem; max-width: 90%; }
+
+      #statement { grid-template-columns: 1fr; gap: 2.5rem; }
+      .statement-left { position: static; }
+      .cv-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+      .projects-featured { grid-template-columns: 1fr; }
+      .projects-featured .project-card { aspect-ratio: 16/10; }
+      .projects-detail { grid-template-columns: repeat(2, 1fr); }
+      .projects-detail .project-card { aspect-ratio: 3/4; }
+      .projects-archive { grid-template-columns: repeat(2, 1fr); }
+
+      nav { padding: 1.2rem 1.5rem; }
+      section { padding: 5rem 1.5rem; }
+
+      .contact-links { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+
+      /* Lightbox — fullscreen fit-to-viewport on mobile */
+      .lightbox {
+        align-items: stretch; justify-content: stretch;
+        padding: 0; overflow: hidden;
+      }
+      .lightbox-backdrop { background: #000; pointer-events: none; }
+      .lightbox-content {
+        width: 100%; max-width: none;
+        height: 100vh; height: 100dvh;
+        display: flex; flex-direction: column;
+        padding: 0.5rem;
+      }
+      .lightbox.active .lightbox-content { transform: none; }
+      .tile-grid-wrap { flex: 1; min-height: 0; overflow-y: auto; }
+      .tile-grid {
+        height: 100%;
+        grid-auto-rows: 1fr;
+      }
+      .tile-grid.cols-4 { grid-template-columns: repeat(2, 1fr); }
+      .tile-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .tile { aspect-ratio: auto; }
+
+      .fs-arrow { font-size: 1rem; padding: 0.8rem 1rem; }
+      .fs-caption-bar { padding: 0.8rem 1.2rem; }
+    }
+
+    /* ── Responsive: Phone ── */
+    @media (max-width: 600px) {
+      nav { padding: 1rem 1.2rem; }
+      .nav-logo { font-size: 0.95rem; }
+
+      section { padding: 3.5rem 1.2rem; }
+
+      #hero { min-height: auto; }
+      .hero-left { padding: 5.5rem 1.2rem 2.5rem; }
+      .hero-name { font-size: clamp(2.6rem, 12vw, 4rem); margin-bottom: 1.2rem; }
+      .hero-eyebrow { font-size: 0.55rem; margin-bottom: 1rem; }
+      .hero-tagline { font-size: 0.72rem; margin-bottom: 2rem; max-width: 100%; }
+      .hero-right { height: 65vw; }
+      .hero-index { bottom: 1rem; right: 1rem; font-size: 0.55rem; }
+
+      .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+      .work-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; margin-bottom: 2.5rem; }
+
+      .projects-featured .project-card { aspect-ratio: 4/3; }
+      .projects-featured .project-label-title { font-size: 1rem; }
+      .projects-detail { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+      .projects-detail .project-card { aspect-ratio: 3/4; }
+      .projects-detail .project-label { padding: 0.6rem 0.8rem; }
+      .projects-detail .project-label-title { font-size: 0.75rem; }
+      .projects-archive { grid-template-columns: 1fr 1fr; gap: 0.5rem; }
+      .projects-archive .project-card { aspect-ratio: 3/4; }
+      .projects-archive .project-label { padding: 0.6rem 0.8rem; }
+      .projects-archive .project-label-title { font-size: 0.75rem; }
+
+      .statement-quote { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
+      .statement-quote::before { font-size: 6rem; top: -1rem; left: -0.5rem; }
+      .statement-body p { font-size: 0.75rem; line-height: 1.9; }
+
+      .cv-section-title { font-size: 0.55rem; }
+      .cv-item-title { font-size: 0.8rem; }
+      .cv-item-header { flex-direction: column; gap: 0.15rem; }
+      .cv-item-date { white-space: normal; }
+
+      #contact { padding: 5rem 1.2rem; }
+      .contact-title { font-size: clamp(2.2rem, 10vw, 4rem); }
+      .contact-email { font-size: clamp(0.85rem, 3.5vw, 1.1rem); }
+      .contact-links { gap: 1.5rem; }
+      .contact-links a { font-size: 0.65rem; }
+
+      footer { flex-direction: column; gap: 0.5rem; text-align: center; padding: 1.5rem 1.2rem; }
+      footer span { font-size: 0.55rem; }
+
+      /* Lightbox — phone */
+      .lightbox-content { padding: 0.4rem; }
+      .tile-grid.cols-4, .tile-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .tile-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+      .tile-grid { gap: 2px; }
+      .tile { aspect-ratio: auto; }
+      .lightbox-meta {
+        flex-shrink: 0;
+        flex-direction: row; align-items: center;
+        justify-content: space-between;
+        gap: 0.5rem; padding: 0.5rem 0.25rem 0.2rem;
+      }
+      .lightbox-title { font-size: 0.85rem; }
+      .lightbox-title span { display: inline; margin-left: 0.5rem; }
+      .lightbox-controls { width: auto; gap: 0.8rem; }
+
+      .lb-statement-panel { padding: 1.5rem 1.2rem; background: #000; }
+      .lb-statement-text { font-size: clamp(0.85rem, 3.5vw, 1.1rem); padding-left: 1.2rem; }
+
+      /* Fullscreen view */
+      .fs-arrow { padding: 0.6rem 0.8rem; font-size: 0.9rem; }
+      .fs-arrow.prev { left: 0.25rem; }
+      .fs-arrow.next { right: 0.25rem; }
+      .fs-caption-bar { flex-direction: column; align-items: flex-start; gap: 0.6rem; padding: 0.7rem 1rem; }
+      .fs-caption-text { font-size: 0.8rem; }
+      .fs-caption-series { font-size: 0.52rem; }
+      .fs-caption-right { width: 100%; justify-content: space-between; }
+      .fs-back { font-size: 0.7rem; padding: 0.4rem 0.85rem; }
+    }
+
+    /* ── Responsive: Very small ── */
+    @media (max-width: 380px) {
+      .hero-name { font-size: 2.4rem; }
+      .projects-archive { grid-template-columns: 1fr; }
+      .projects-archive .project-card { aspect-ratio: 4/3; }
+    }
+
+    /* ── Hero starburst ── */
+    @keyframes hero-burst-anim {
+      0%   { transform: translate(-50%,-50%) scale(0) rotate(-10deg); opacity: 0.85; }
+      100% { transform: translate(-50%,-50%) scale(4)  rotate(20deg); opacity: 0; }
+    }
+    .hero-burst {
+      position: fixed;
+      width: 200px; height: 200px;
+      pointer-events: none;
+      z-index: 50;
+      background: var(--ember);
+      /* 8-point star */
+      clip-path: polygon(
+        50% 0%, 57.65% 31.52%, 85.36% 14.64%, 68.48% 42.35%,
+        100% 50%, 68.48% 57.65%, 85.36% 85.36%, 57.65% 68.48%,
+        50% 100%, 42.35% 68.48%, 14.64% 85.36%, 31.52% 57.65%,
+        0% 50%, 31.52% 42.35%, 14.64% 14.64%, 42.35% 31.52%
+      );
+      animation: hero-burst-anim 0.7s cubic-bezier(0.1, 0, 0.6, 1) forwards;
+    }
+
+    /* ── Explosion ── */
+    @keyframes explode-shard {
+      0%   { transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity: 1; }
+      100% { opacity: 0; }
+    }
+    .explosion-shard {
+      position: fixed; pointer-events: none; z-index: 60;
+      background: var(--ember);
+    }
+    @keyframes explode-ring {
+      0%   { transform: translate(-50%,-50%) scale(0); opacity: 0.7; border-width: 3px; }
+      100% { transform: translate(-50%,-50%) scale(1); opacity: 0; border-width: 1px; }
+    }
+    .explosion-ring {
+      position: fixed; pointer-events: none; z-index: 55;
+      border: 3px solid var(--ember); border-radius: 50%;
+      transform: translate(-50%,-50%) scale(0);
+    }
+    @keyframes explode-flash {
+      0%   { opacity: 0.6; }
+      100% { opacity: 0; }
+    }
+    .explosion-flash {
+      position: fixed; inset: 0; z-index: 9996;
+      background: var(--ember); pointer-events: none;
+      animation: explode-flash 0.5s ease-out forwards;
+    }
+    @keyframes screen-shake {
+      0%, 100% { transform: translate(0,0); }
+      10% { transform: translate(-6px, 4px); }
+      20% { transform: translate(5px, -6px); }
+      30% { transform: translate(-4px, 5px); }
+      40% { transform: translate(6px, -3px); }
+      50% { transform: translate(-5px, -4px); }
+      60% { transform: translate(3px, 6px); }
+      70% { transform: translate(-6px, -2px); }
+      80% { transform: translate(4px, 5px); }
+      90% { transform: translate(-3px, -5px); }
+    }
+    body.shaking { animation: screen-shake 0.5s ease-out; }
+
+    @keyframes hero-hit-shake {
+      0%,100% { transform: translateY(var(--hp,0px)) scale(var(--hs,1)); }
+      15% { transform: translateY(var(--hp,0px)) scale(var(--hs,1)) translate(-5px,-4px) rotate(-1.2deg); }
+      30% { transform: translateY(var(--hp,0px)) scale(var(--hs,1)) translate(5px,3px)  rotate(1.5deg); }
+      50% { transform: translateY(var(--hp,0px)) scale(var(--hs,1)) translate(-3px,5px) rotate(-0.8deg); }
+      70% { transform: translateY(var(--hp,0px)) scale(var(--hs,1)) translate(4px,-3px) rotate(1deg); }
+    }
+    .hero-img.hit {
+      animation: hero-hit-shake 0.38s ease-out;
+    }
+    .hero-img.broken {
+      filter: drop-shadow(0 12px 32px rgba(0,0,0,0.7)) drop-shadow(0 4px 10px rgba(0,0,0,0.5));
+    }
+
+    /* ── Hero easter egg callout ── */
+    .hero-callout {
+      position: absolute;
+      background: var(--ash);
+      color: var(--parchment);
+      border: 1px solid var(--clay);
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      padding: 0.5rem 0.9rem;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 99;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .hero-callout::after {
+      content: '';
+      position: absolute;
+      bottom: -5px; left: 18px;
+      width: 8px; height: 8px;
+      background: var(--ash);
+      border-right: 1px solid var(--clay);
+      border-bottom: 1px solid var(--clay);
+      transform: rotate(45deg);
+    }
+    .hero-callout.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="page-cover"></div>
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor-ring" id="cursorRing"></div>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#hero" class="nav-logo">Jonah Dichter</a>
+    <ul class="nav-links">
+      <li><a href="#work">Work</a></li>
+      <li><a href="#statement">Statement</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile nav overlay -->
+  <div class="mobile-nav-overlay" id="mobileNav">
+    <button class="mobile-nav-close" id="mobileNavClose">&#x2715;</button>
+    <a href="#work">Work</a>
+    <a href="#statement">Statement</a>
+    <a href="#cv">CV</a>
+    <a href="#contact">Contact</a>
+  </div>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-left">
+      <p class="hero-eyebrow">Ceramics &amp; Studio Practice</p>
+      <h1 class="hero-name">Jonah<br><em>Dichter</em></h1>
+      <p class="hero-tagline">
+        Time and transformation in fired clay — objects shaped by chemistry, labor, and the conditions of their making.
+      </p>
+      <a href="#work" class="hero-cta">View Work <span class="arrow"></span></a>
+    </div>
+    <div class="hero-right">
+      <img class="hero-img" src="web/hero-new.png" alt="Jonah Dichter — ceramic work" id="heroImg" />
+    </div>
+    <span class="hero-index">Rochester, NY</span>
+  </section>
+
+  <!-- Work -->
+  <section id="work">
+    <div class="work-header reveal">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">An<br><em>Accumulation</em></h2>
+      </div>
+      <span class="work-series">2024 – 2026</span>
+    </div>
+
+    <!-- Installations -->
+    <div class="projects-archive-divider reveal">
+      <span>Installations</span>
+    </div>
+
+    <div class="projects-featured">
+      <!-- SERIES[0] -->
+      <div class="project-card reveal">
+        <img class="project-img" src="web/final-install/final-install-21.jpg" alt="Days — hallway view" />
+        <div class="project-label">
+          <span class="project-label-title">Days</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
+      <!-- SERIES[1] -->
+      <div class="project-card reveal reveal-delay-1">
+        <img class="project-img" src="web/ontological-dispute/geo-logic-installation.jpg" alt="Ontological Dispute — installation view" />
+        <div class="project-label">
+          <span class="project-label-title">Ontological Dispute</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Studies -->
+    <div class="projects-archive-divider reveal">
+      <span>Studies</span>
+    </div>
+
+    <div class="projects-detail">
+      <!-- SERIES[2] -->
+      <div class="project-card reveal">
+        <img class="project-img" src="web/final-product/final-product-27.jpg" alt="Objects — bucket of ceramic baseballs" />
+        <div class="project-label">
+          <span class="project-label-title">Objects</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
+      <!-- SERIES[3] -->
+      <div class="project-card reveal reveal-delay-1">
+        <img class="project-img" src="web/final-stack/final-product-42.jpg" alt="Stacks — five bricks, multicolor glazes" />
+        <div class="project-label">
+          <span class="project-label-title">Stacks</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
+      <!-- SERIES[4] -->
+      <div class="project-card reveal reveal-delay-2">
+        <img class="project-img" src="web/ontological-midterm/dichtersp26m-14.jpg" alt="Process — fired clay fragments" />
+        <div class="project-label">
+          <span class="project-label-title">Process</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
+      <!-- SERIES[5] -->
+      <div class="project-card reveal reveal-delay-3">
+        <img class="project-img" src="web/thrown-objects/cover.jpg" alt="Thrown Objects" />
+        <div class="project-label">
+          <span class="project-label-title">Thrown Objects</span>
+          <span class="project-label-year">2025</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earlier Work -->
+    <button class="earlier-work-toggle reveal" id="earlierWorkToggle">
+      <span>Earlier Work <i class="toggle-arrow">&#x2193;</i></span>
+    </button>
+
+    <div class="projects-archive projects-archive--older" id="earlierWorkGrid">
+      <!-- SERIES[6] -->
+      <div class="project-card reveal">
+        <img class="project-img" src="web/geologic/geologic-1.jpg" alt="geo|logic" />
+        <div class="project-label">
+          <span class="project-label-title">geo|logic</span>
+          <span class="project-label-year">2024</span>
+        </div>
+      </div>
+      <!-- SERIES[7] -->
+      <div class="project-card reveal reveal-delay-1">
+        <img class="project-img" src="web/thrown-sculpture/thrown-sculpture-1.jpg" alt="Thrown Sculpture" />
+        <div class="project-label">
+          <span class="project-label-title">Thrown Sculpture</span>
+          <span class="project-label-year">2024</span>
+        </div>
+      </div>
+      <!-- SERIES[8] -->
+      <div class="project-card reveal reveal-delay-2">
+        <img class="project-img" src="web/pottery/pottery-1.jpg" alt="Blue Pottery" />
+        <div class="project-label">
+          <span class="project-label-title">Blue Pottery</span>
+          <span class="project-label-year">2024</span>
+        </div>
+      </div>
+      <!-- SERIES[9] -->
+      <div class="project-card reveal reveal-delay-3">
+        <img class="project-img" src="web/more-pots/drawn-1.jpg" alt="Drawn" />
+        <div class="project-label">
+          <span class="project-label-title">Drawn</span>
+          <span class="project-label-year">2024</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Statement -->
+  <section id="statement">
+    <div class="statement-left reveal">
+      <div class="section-label">Artist Statement</div>
+      <blockquote class="statement-quote">
+        The same material that makes a cup makes a brick. What changes is the question.
+      </blockquote>
+    </div>
+    <div class="statement-body reveal reveal-delay-1">
+      <p>My practice is organized around a small set of objects — bricks, baseballs, vessels — and the questions they raise about labor, familiarity, and what happens when a culturally loaded form is translated into a slow and resistant material.</p>
+      <p>The brick occupies a peculiar position among commodities: it is everybody's object, and nobody's. Its status as an object of labor remains legible — it exists in the cultural imagination not as a neutral commodity but as crystallized working-class labor. Coating it in glaze does not neutralize this. It adds another layer: the labor of construction, the fragility of fired stoneware, the color that signals completion. A glazed brick is a brick that has been told it's art. Whether that claim holds is the work's question.</p>
+      <p>The stacks are an accumulation of days. Each brick that comes out of the kiln is evidence that a day occurred — a record of having arrived, following the process, staying in the studio until the cast was ready to open. The making is machinic, and the machine is me. The question they eventually surface is not conceptual but arithmetic: why does my existence not add up to more than five?</p>
+      <p>The baseball indexes leisure where the brick indexes labor — the same hand, a different gesture. The most generative moments are where material exceeds its manufactured limits, where porcelain buckles and stacks shift past what they were designed to hold. That is not failure. It is where the material is most honestly itself.</p>
+    </div>
+  </section>
+
+  <!-- CV -->
+  <section id="cv">
+    <div class="reveal">
+      <div class="section-label">Curriculum Vitae</div>
+      <h2 class="section-title">Background<br><em>&amp; Experience</em></h2>
+    </div>
+    <div class="cv-grid">
+      <div>
+        <div class="cv-section reveal">
+          <div class="cv-section-title">Education</div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">Rochester Institute of Technology</span>
+              <span class="cv-item-date">exp. 2027</span>
+            </div>
+            <div class="cv-item-sub">B.F.A Studio Arts, Ceramics Option</div>
+            <div class="cv-item-detail">GPA 3.92 · Dean's List · College of Art and Design</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">Rochester Institute of Technology</span>
+              <span class="cv-item-date">exp. 2028</span>
+            </div>
+            <div class="cv-item-sub">B.S. Chemistry</div>
+            <div class="cv-item-detail">GPA 3.92 · Dean's List · College of Science</div>
+          </div>
+        </div>
+        <div class="cv-section reveal reveal-delay-1">
+          <div class="cv-section-title">Teaching &amp; Instruction</div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">Clay Art Center</span>
+              <span class="cv-item-date">2022–Present</span>
+            </div>
+            <div class="cv-item-sub">Independent Contractor — Port Chester, NY</div>
+            <div class="cv-item-detail">Private pottery wheel instruction; substitute ceramics teaching</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">URJ Eisner Camp</span>
+              <span class="cv-item-date">2024, 2025</span>
+            </div>
+            <div class="cv-item-sub">Fine Arts Director — Great Barrington, MA</div>
+            <div class="cv-item-detail">Developed ceramics program; mentored Fine Arts staff; Leadership Team</div>
+          </div>
+        </div>
+        <div class="cv-section reveal reveal-delay-2">
+          <div class="cv-section-title">Research</div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">Williams Research Group, RIT</span>
+              <span class="cv-item-date">2026–Present</span>
+            </div>
+            <div class="cv-item-sub">Undergraduate Research Assistant</div>
+            <div class="cv-item-detail">TEOS-based silica gelation; pycnometer density characterization; drying protocol optimization</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="cv-section reveal">
+          <div class="cv-section-title">Other Experience</div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">WITR Radio</span>
+              <span class="cv-item-date">2024–Present</span>
+            </div>
+            <div class="cv-item-sub">Sports Director — Rochester, NY</div>
+            <div class="cv-item-detail">Oct. 2025–Present · Manage and coordinate a team of 5 broadcast engineers</div>
+            <div class="cv-item-detail">Hockey Broadcast Engineer · Oct. 2024–Present · Live audio mixing for RIT Division I hockey; real-time technical direction</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">AM Art Conservation</span>
+              <span class="cv-item-date">2022, 2024</span>
+            </div>
+            <div class="cv-item-sub">Conservation Intern — White Plains, NY</div>
+            <div class="cv-item-detail">Ceramic restoration; damage cataloguing at Museum of Chinese in America</div>
+          </div>
+          <div class="cv-item">
+            <div class="cv-item-header">
+              <span class="cv-item-title">Social Media</span>
+              <span class="cv-item-date">2024–Present</span>
+            </div>
+            <div class="cv-item-sub">Self-Employed — @ceramicsbyjonah</div>
+            <div class="cv-item-detail">Edit and post original ceramic content 3–4×/week · 2,250% follower growth · up to 1M accounts reached monthly</div>
+          </div>
+        </div>
+        <div class="cv-section reveal reveal-delay-1">
+          <div class="cv-section-title">Skills &amp; Materials</div>
+          <div class="cv-item">
+            <div class="cv-item-sub" style="line-height:2.2;">
+              Wheel-throwing · Hand-building · Metal glaze chemistry ·
+              Luster &amp; crystalline glazes · Kiln operation · Raku · Slip casting ·
+              Adobe CC Suite · SolidWorks · Rhino 3D · Fusion 360 · Grasshopper
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-label">Get In Touch</div>
+    <h2 class="contact-title reveal">Let's<br><em>Connect</em></h2>
+    <a href="mailto:jonahdichter@gmail.com" class="contact-email reveal reveal-delay-1">jonahdichter@gmail.com</a>
+    <ul class="contact-links reveal reveal-delay-2">
+      <li><a href="https://www.instagram.com/ceramicsbyjonah" target="_blank">Instagram</a></li>
+      <li><a href="https://www.etsy.com/shop/CeramicsByJonah" target="_blank">Shop / Etsy</a></li>
+      <li><a href="https://www.linkedin.com/in/jonah-dichter-577517262/" target="_blank">LinkedIn</a></li>
+    </ul>
+  </section>
+
+  <footer>
+    <span>&copy; 2026 Jonah Dichter</span>
+    <span>Ceramics &amp; Studio Practice &mdash; Rochester, NY</span>
+  </footer>
+
+  <!-- Tile-grid lightbox -->
+  <div class="lightbox" id="lightbox">
+    <div class="lightbox-backdrop" id="lbBackdrop"></div>
+    <div class="lb-statement-panel" id="lbStmtPanel">
+      <p class="lb-statement-text" id="lbStmtText"></p>
+    </div>
+    <div class="lightbox-content">
+      <div class="tile-grid-wrap">
+        <div class="tile-grid" id="tileGrid"></div>
+      </div>
+      <div class="lightbox-meta">
+        <div class="lightbox-title" id="lbTitle"></div>
+        <div class="lightbox-controls">
+          <button class="lb-stmt-btn" id="lbStmtBtn">Statement</button>
+          <button class="lightbox-close" id="lbClose">&#x2715; Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Full-screen single-image view -->
+  <div class="fs-view" id="fsView">
+    <div class="fs-img-area" id="fsImgArea">
+      <img class="fs-img" id="fsImgA" src="" alt="" />
+      <img class="fs-img" id="fsImgB" src="" alt="" />
+      <button class="fs-arrow prev" id="fsPrev">&#8592;</button>
+      <button class="fs-arrow next" id="fsNext">&#8594;</button>
+    </div>
+    <div class="fs-caption-bar">
+      <div class="fs-caption-left">
+        <span class="fs-caption-text" id="fsCaptionText"></span>
+        <span class="fs-caption-series" id="fsCaptionSeries"></span>
+      </div>
+      <div class="fs-caption-right">
+        <span class="fs-counter" id="fsCounter"></span>
+        <button class="fs-back" id="fsBack">&#8592; Grid</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─────────────────────────────────────────────
+    // SERIES DATA
+    // images: array of { src, caption } objects
+    // ─────────────────────────────────────────────
+    var SERIES = [
+      // ── [0] Days ──────────────────────────────────────────────
+      {
+        title: 'Days', year: '2026', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'Am I afraid of dying? Probably. Bricks are, among other things, an answer to that. Each one that comes out of the kiln is evidence that a day occurred — a record of having arrived, following my process, and staying in the studio until the cast was ready to open. The making is machinic, and the machine is me: a production cycle governed by time and sequence, replicating the logic of industrial labor by hand. The stacks are an accumulation of days. The question they eventually surface is not conceptual but arithmetic — why does my existence not add up to more than five?\n\nThe baseball indexes leisure where the brick indexes labor — the same hand, a different gesture. A bucket of them sits in the installation, objects that share the brick\'s democratic profile without entering its ontological field, their own inventory. The baseballs are where this is going — they are asking something the bricks have not yet answered.',
+        images: [
+          { src: 'web/final-install/final-install-21.jpg', caption: 'Hallway, looking in' },
+          { src: 'web/final-install/final-install-1.jpg',  caption: 'Bucket on cast bricks' },
+          { src: 'web/final-install/final-install-5.jpg',  caption: 'Stack, close-up' },
+          { src: 'web/final-install/final-install-7.jpg',  caption: 'Arrangment of five stacks' },
+          { src: 'web/final-install/final-install-11.jpg', caption: 'Readymade stack on tile' },
+          { src: 'web/final-install/final-install-12.jpg', caption: 'Handformed bricks, laid flat' },
+          { src: 'web/final-install/final-install-15.jpg', caption: 'Collapsed stack' },
+          { src: 'web/final-install/final-install-16.jpg', caption: 'Remainder' },
+          { src: 'web/final-install/final-install-20.jpg', caption: 'Wall, with remainder' }
+        ]
+      },
+      // ── [1] Ontological Dispute ─────────────────────────────────────────────
+      {
+        title: 'Ontological Dispute', year: '2026', cols: 4,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'A brick can be fired or unfired, glazed or raw, hand-formed or cast, functional or failed. These aren\'t variations on a brick. They are competing claims about what a brick is — ontological disputes dressed up as ceramic objects. Cast from the same mold, fired to the same temperature, with every other variable introduced. At what point does a brick stop being a brick? When it no longer looks like what you expect but still came from the same origin — is it still the thing, or only a sign of the thing?',
+        images: [
+          { src: 'web/ontological-dispute/geo-logic-installation.jpg',  caption: 'Installation view, 2026' },
+          { src: 'web/ontological-dispute/geo-logic-wall-front.jpg',    caption: 'Wall piece — fired stoneware, drywall' },
+          { src: 'web/ontological-dispute/geo-logic-wall-angle.jpg',    caption: 'Wall piece (oblique), 2026' },
+          { src: 'web/ontological-dispute/geo-logic-table-wide.jpg',    caption: 'Table — full arrangement' },
+          { src: 'web/ontological-dispute/geo-logic-table-close-1.jpg', caption: 'Detail — yellow brick and soda-fired ball' },
+          { src: 'web/ontological-dispute/geo-logic-table-close-2.jpg', caption: 'Detail — stoneware and porcelain' },
+          { src: 'web/ontological-dispute/geo-logic-red-brick.jpg',     caption: 'Collapsed brick with copper red glaze' },
+          { src: 'web/ontological-dispute/geo-logic-fragments.jpg',     caption: 'Fragment studies — failed castings' }
+        ]
+      },
+      // ── [2] Objects ─────────────────────────────────────────────────────────
+      {
+        title: 'Objects', year: '2026', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'The brick occupies a peculiar position among commodities: it is everybody\'s object, and nobody\'s. The social relations of most manufactured goods are obscured within the commodity itself, appearing as the inherent properties of a thing rather than as evidence of human labor. The brick does not permit that mystification. Its status as an object of labor remains legible — it exists in the cultural imagination not as a neutral commodity but as crystallized working-class labor, as the material substrate of cities built by specific bodies under specific conditions.\n\nThe baseball indexes leisure where the brick indexes labor — the same hand, a different gesture.',
+        images: [
+          { src: 'web/final-product/final-product-27.jpg', caption: 'Bucket of baseballs' },
+          { src: 'web/final-product/final-product-1.jpg',  caption: 'Red brick remnant, cracked' },
+          { src: 'web/final-product/final-product-30.jpg', caption: 'Baseball, soda-fired' },
+          { src: 'web/final-product/final-product-3.jpg',  caption: 'Soda-fired brick' },
+          { src: 'web/final-product/final-product-33.jpg', caption: 'Baseball, soda-fired porcelain' },
+          { src: 'web/final-product/final-product-6.jpg',  caption: 'Soda-fired brick' },
+          { src: 'web/final-product/final-product-34.jpg', caption: 'Baseball, terracotta' },
+          { src: 'web/final-product/final-product-10.jpg', caption: 'Copper-blue brick' },
+          { src: 'web/final-product/final-product-36.jpg', caption: 'Baseball, shivered' },
+          { src: 'web/final-product/final-product-7.jpg',  caption: 'Pooled copper-blue brick' },
+          { src: 'web/final-product/final-product-38.jpg', caption: 'Baseball, soda-fired' },
+          { src: 'web/final-product/final-product-15.jpg', caption: 'Three bricks, stacked' },
+          { src: 'web/final-product/final-product-17.jpg', caption: 'Manganese brick' },
+          { src: 'web/final-product/final-product-18.jpg', caption: 'Shivered brick' },
+          { src: 'web/final-product/final-product-19.jpg', caption: 'Copper-blue brick fragment' },
+          { src: 'web/final-product/final-product-21.jpg', caption: 'Brick fragment, soda-fired' },
+          { src: 'web/final-product/final-product-25.jpg', caption: 'Two fragments, copper-blue crackle' }
+        ]
+      },
+      // ── [3] Stacks ──────────────────────────────────────────────────────────
+      {
+        title: 'Stacks', year: '2026', cols: 4,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'The glazed brick stacks are pretty. That is a considered position, not an accident, and it requires some accounting. Because the brick carries such a profound ontological association with alienated labor, work that aestheticizes it — coating it in color and gloss and the language of refined ceramic production — is operating not at the level of labor itself but at the level of the aesthetic of labor. If the brick cannot shed its association with working bodies regardless of what is done to it — and I believe it cannot — then coating it in beauty is a means of pointing at that impossibility.\n\nThe most generative moments are where material exceeds its manufactured limits, where porcelain buckles and stacks shift past what they were designed to hold. That is not failure. It is where the material is most honestly itself.',
+        images: [
+          { src: 'web/final-stack/final-product-42.jpg', caption: 'Stack 1' },
+          { src: 'web/final-stack/final-product-39.jpg', caption: 'Stack 2' },
+          { src: 'web/final-stack/final-product-46.jpg', caption: 'Stack 3' },
+          { src: 'web/final-stack/final-product-49.jpg', caption: 'Stack 4' },
+          { src: 'web/final-stack/final-product-52.jpg', caption: 'Stack 5' },
+          { src: 'web/final-stack/final-product-55.jpg', caption: 'Stack 6' },
+          { src: 'web/final-stack/final-product-59.jpg', caption: 'Stack 7' },
+          { src: 'web/final-stack/final-product-65.jpg', caption: 'Stack 8' }
+        ]
+      },
+      // ── [4] Process ─────────────────────────────────────────────────────────
+      {
+        title: 'Process', year: '2026', cols: 4,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'Midterm documentation — the work in progress before the final installation. The objects at an earlier stage: less finished, closer to raw material, the questions still open.',
+        images: [
+          { src: 'web/ontological-midterm/dichtersp26m-14.jpg', caption: 'Twisted Brick 1' },
+          { src: 'web/ontological-midterm/dichtersp26m-10.jpg', caption: 'Copper-blue test' },
+          { src: 'web/ontological-midterm/dichtersp26m-11.jpg', caption: 'Copper-red test' },
+          { src: 'web/ontological-midterm/dichtersp26m-13.jpg', caption: 'Red brick, collapsed' },
+          { src: 'web/ontological-midterm/dichtersp26m-15.jpg', caption: 'Yellow brick, unglazed' },
+          { src: 'web/ontological-midterm/dichtersp26m-16.jpg', caption: 'Slip Test' },
+          { src: 'web/ontological-midterm/dichtersp26m-17.jpg', caption: 'Baseball Test' },
+          { src: 'web/ontological-midterm/dichtersp26m-18.jpg', caption: 'Twisted Brick 2' }
+        ]
+      },
+      // ── [5] Thrown Objects ──────────────────────────────────────────────────
+      {
+        title: 'Thrown Objects', year: '2025', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'The brick exists before politics finds it. The same object builds and breaks. Stacked here — identically cast, each one waiting. The difference between a building material and an instrument of dissent is timing, circumstance, and who is asking.',
+        images: [
+          { src: 'web/thrown-objects/DSC03817.jpg', caption: 'Thrown Objects — stack study I' },
+          { src: 'web/thrown-objects/DSC03819.jpg', caption: 'Thrown Objects — stack study II' },
+          { src: 'web/thrown-objects/DSC03820.jpg', caption: 'Thrown Objects — stack study III' },
+          { src: 'web/thrown-objects/DSC03822.jpg', caption: 'Thrown Objects — stack study IV' },
+          { src: 'web/thrown-objects/DSC03824.jpg', caption: 'Thrown Objects — stack study V' },
+          { src: 'web/thrown-objects/DSC03825.jpg', caption: 'Thrown Objects — stack study VI' }
+        ]
+      },
+      // ── [6] geo|logic ───────────────────────────────────────────────────────
+      {
+        title: 'geo|logic', year: '2024', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'geo|logic is a series of destroyed vessels that juxtapose clay\'s return to a primordial state with the act of surveillance. These are performance pieces: they appear \'natural\' only because of deliberate intervention and inherited human bias. The universe tends toward entropy — the viewer may read these pieces as less ordered, closer to some entropic state — but they are exactly as finished as any functional ware or sculpture in this practice. Ruin is also a form of completion.',
+        images: [
+          { src: 'web/geologic/geologic-1.jpg', caption: 'geo|logic — overview' },
+          { src: 'web/geologic/geologic-2.jpg', caption: 'geo|logic — entropy study' },
+          { src: 'web/geologic/geologic-3.jpg', caption: 'Vessel, returned — I' },
+          { src: 'web/geologic/geologic-4.jpg', caption: 'Vessel, returned — II' },
+          { src: 'web/geologic/geologic-5.jpg', caption: 'Vessel, returned — III' },
+          { src: 'web/geologic/geologic-6.jpg', caption: 'Vessel, returned — IV' }
+        ]
+      },
+      // ── [7] Thrown Sculpture ────────────────────────────────────────────────
+      {
+        title: 'Thrown Sculpture', year: '2024', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'The potter\'s wheel is a constraint disguised as a tool. Every form it produces is rotationally symmetric — the same profile swept continuously around a central axis. This works for a bowl. It is strange for a fire hydrant.\n\nThese pieces began as an inquiry into that constraint: what the wheel can make, and what it cannot. The answer is that it can make almost anything, but only as a rotation — as if every object were secretly a vessel waiting to be found inside a spinning cylinder of clay. The hydrant, the bullet forms, the ambiguous others: each arrived through the same centripetal logic, hands pressing inward as the clay moved outward, coaxing a silhouette the tool was never designed to produce. The throwing marks remain visible not as texture but as evidence — a record of what it took to get there.',
+        images: [
+          { src: 'web/thrown-sculpture/thrown-sculpture-1.jpg', caption: 'Thrown Sculpture — fire hydrant, cobalt glaze' },
+          { src: 'web/thrown-sculpture/thrown-sculpture-2.jpg', caption: 'Thrown Sculpture — bullet form, temmouku glaze' },
+          { src: 'web/thrown-sculpture/thrown-sculpture-3.jpg', caption: 'Thrown Sculpture — bullet form, shino glaze' },
+          { src: 'web/thrown-sculpture/thrown-sculpture-4.jpg', caption: 'Thrown Sculpture — bullet form, green glaze' },
+          { src: 'web/thrown-sculpture/thrown-sculpture-5.jpg', caption: 'Thrown Sculpture — form study' },
+          { src: 'web/thrown-sculpture/thrown-sculpture-6.jpg', caption: 'Thrown Sculpture — form study' }
+        ]
+      },
+      // ── [8] Blue Pottery ────────────────────────────────────────────────────
+      {
+        title: 'Blue Pottery', year: '2024', cols: 4,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'Each piece here was made first as a functional object — to be held, filled, used. The cobalt glaze was chosen for its volatility: a single chemistry that reads navy, slate, or cerulean depending on temperature, thickness, and the light that falls on it. What appears to be a surface treatment is the same material as the vessel, made liquid and then permanent by fire.',
+        images: [
+          { src: 'web/pottery/pottery-1.jpg',    caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/pottery-1-2.jpg',  caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/pottery-1-3.jpg',  caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/Untitled-1-2.jpg', caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/Untitled-1-3.jpg', caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/Untitled-1-4.jpg', caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/Untitled-1-5.jpg', caption: 'Blue pottery — fired stoneware' },
+          { src: 'web/pottery/Untitled-1-6.jpg', caption: 'Blue pottery — fired stoneware' }
+        ]
+      },
+      // ── [9] Drawn ───────────────────────────────────────────────────────────
+      {
+        title: 'Drawn', year: '2024', cols: 3,
+        color: '#3d6fcc', bg: '#181824',
+        statement: 'These pieces begin with a single gesture — a finger drawn through wet slip before firing. The motion is the mark; the mark is the record of a specific moment of contact between hand and material. The resulting lines are not drawn in the illustrative sense but pulled: a body moving through a liquid medium, leaving a trace. Each pattern is unique to that pass, at that speed, at that pressure.',
+        images: [
+          { src: 'web/more-pots/drawn-1.jpg', caption: 'Drawn — platter, slip-trailed stoneware' },
+          { src: 'web/more-pots/drawn-2.jpg', caption: 'Drawn — plate' },
+          { src: 'web/more-pots/drawn-3.jpg', caption: 'Drawn — mug, slip-trailed stoneware' },
+          { src: 'web/more-pots/drawn-4.jpg', caption: 'Drawn — bowl stack' },
+          { src: 'web/more-pots/drawn-5.jpg', caption: 'Drawn — bowl' },
+          { src: 'web/more-pots/drawn-6.jpg', caption: 'Drawn — pitcher' }
+        ]
+      },
+    ];
+
+    // ── DOM refs ──────────────────────────────────
+    var lb          = document.getElementById('lightbox');
+    var tileGrid    = document.getElementById('tileGrid');
+    var lbTitle     = document.getElementById('lbTitle');
+    var lbClose     = document.getElementById('lbClose');
+    var lbBackdrop  = document.getElementById('lbBackdrop');
+    var lbStmtBtn   = document.getElementById('lbStmtBtn');
+    var lbStmtPanel = document.getElementById('lbStmtPanel');
+    var lbStmtText  = document.getElementById('lbStmtText');
+
+    var fsView      = document.getElementById('fsView');
+    var fsImgA      = document.getElementById('fsImgA');
+    var fsImgB      = document.getElementById('fsImgB');
+    var fsActiveSlot = 'A'; // which slot is currently the visible one
+    var fsPrev      = document.getElementById('fsPrev');
+    var fsNext      = document.getElementById('fsNext');
+    var fsBack      = document.getElementById('fsBack');
+    var fsCaptionText   = document.getElementById('fsCaptionText');
+    var fsCaptionSeries = document.getElementById('fsCaptionSeries');
+    var fsCounter   = document.getElementById('fsCounter');
+
+    var showingStatement = false;
+    var currentSeriesIdx = 0;
+    var currentImgIdx    = 0;
+
+    // ── Lightbox ─────────────────────────────────
+    function makeTile(imgObj, label, color, bg, seriesIdx, imgIdx) {
+      var tile = document.createElement('div');
+      tile.className = 'tile';
+      tile.style.transitionDelay = (imgIdx * 60) + 'ms';
+
+      if (imgObj) {
+        var img = document.createElement('img');
+        img.src = imgObj.src;
+        img.alt = imgObj.caption || label;
+        tile.appendChild(img);
+
+        // Hover caption
+        if (imgObj.caption) {
+          var cap = document.createElement('div');
+          cap.className = 'tile-caption';
+          var capTxt = document.createElement('span');
+          capTxt.className = 'tile-caption-text';
+          capTxt.textContent = imgObj.caption;
+          cap.appendChild(capTxt);
+          tile.appendChild(cap);
+        }
+
+        // Click → full-screen
+        tile.addEventListener('click', function(e) {
+          e.stopPropagation();
+          openFullscreen(seriesIdx, imgIdx);
+        });
+      } else {
+        var ph = document.createElement('div');
+        ph.className = 'tile-placeholder';
+        ph.style.background = bg;
+        ph.style.color = color;
+        var sp = document.createElement('span');
+        sp.textContent = label + ' \u00b7 ' + (imgIdx + 1);
+        ph.appendChild(sp);
+        tile.appendChild(ph);
+      }
+      return tile;
+    }
+
+    function openSeries(idx) {
+      currentSeriesIdx = idx;
+      var s = SERIES[idx];
+
+      showingStatement = false;
+      lbStmtPanel.classList.remove('visible');
+      lbStmtBtn.classList.remove('active');
+      lbStmtBtn.textContent = 'Statement';
+      lbStmtText.textContent = s.statement || '';
+      lbStmtBtn.style.display = s.statement ? '' : 'none';
+
+      lbTitle.innerHTML = s.title + ' <span>' + s.year + '</span>';
+      tileGrid.className = 'tile-grid cols-' + s.cols;
+      tileGrid.innerHTML = '';
+
+      var count = s.images.length > 0 ? s.images.length : (s.cols === 2 ? 4 : 6);
+      for (var i = 0; i < count; i++) {
+        tileGrid.appendChild(makeTile(s.images[i] || null, s.title, s.color, s.bg, idx, i));
+      }
+
+      lb.classList.add('active');
+      document.body.style.overflow = 'hidden';
+
+      requestAnimationFrame(function() {
+        tileGrid.querySelectorAll('.tile').forEach(function(t) { t.classList.add('in'); });
+      });
+    }
+
+    function closeLb() {
+      // If full-screen is open, close that first
+      if (fsView.classList.contains('active')) { closeFullscreen(); return; }
+
+      tileGrid.querySelectorAll('.tile').forEach(function(t, i) {
+        t.style.transitionDelay = (i * 25) + 'ms';
+        t.classList.remove('in');
+      });
+      setTimeout(function() {
+        lb.classList.remove('active');
+        document.body.style.overflow = '';
+        showingStatement = false;
+        lbStmtPanel.classList.remove('visible');
+      }, 320);
+    }
+
+    function closeStatement() {
+      showingStatement = false;
+      lbStmtPanel.classList.remove('visible');
+      lbStmtBtn.classList.remove('active');
+      lbStmtBtn.textContent = 'Statement';
+    }
+
+    lbStmtBtn.addEventListener('click', function() {
+      showingStatement = !showingStatement;
+      lbStmtPanel.classList.toggle('visible', showingStatement);
+      lbStmtBtn.classList.toggle('active', showingStatement);
+      lbStmtBtn.textContent = showingStatement ? '← Images' : 'Statement';
+    });
+
+    // Click anywhere on the statement panel to dismiss it back to tile grid
+    lbStmtPanel.addEventListener('click', closeStatement);
+
+    document.querySelectorAll('.project-card').forEach(function(card, i) {
+      card.addEventListener('click', function() { openSeries(i); });
+    });
+    lbClose.addEventListener('click', closeLb);
+    lbBackdrop.addEventListener('click', closeLb);
+
+    // ── Full-screen ───────────────────────────────
+    function openFullscreen(seriesIdx, imgIdx) {
+      currentSeriesIdx = seriesIdx;
+      currentImgIdx    = imgIdx;
+      fsActiveSlot     = 'A';
+      // Reset both slots to clean state
+      fsImgA.style.transition = 'none';
+      fsImgA.style.transform  = '';
+      fsImgA.style.opacity    = '0';
+      fsImgB.style.transition = 'none';
+      fsImgB.style.transform  = 'translateX(100%)';
+      fsImgB.style.opacity    = '0';
+      renderFullscreen(0);
+      fsView.classList.add('active');
+    }
+
+    function renderFullscreen(direction) {
+      // direction: 0 = initial open (scale-in), 1 = next (slide left), -1 = prev (slide right)
+      var s       = SERIES[currentSeriesIdx];
+      var imgData = s.images[currentImgIdx];
+      var src     = imgData ? imgData.src : '';
+
+      fsCaptionText.textContent   = imgData ? imgData.caption : '';
+      fsCaptionSeries.textContent = s.title + ' · ' + s.year;
+      fsCounter.textContent       = (currentImgIdx + 1) + ' / ' + s.images.length;
+      fsPrev.disabled = currentImgIdx === 0;
+      fsNext.disabled = currentImgIdx === s.images.length - 1;
+
+      var activeImg   = fsActiveSlot === 'A' ? fsImgA : fsImgB;
+      var incomingImg = fsActiveSlot === 'A' ? fsImgB : fsImgA;
+
+      if (direction === 0) {
+        // Initial open: scale-in from slightly small
+        activeImg.src = src;
+        activeImg.style.transition = 'none';
+        activeImg.style.transform  = 'scale(0.92)';
+        activeImg.style.opacity    = '0';
+        incomingImg.style.transition = 'none';
+        incomingImg.style.opacity    = '0';
+        incomingImg.style.transform  = 'translateX(100%)';
+        requestAnimationFrame(function() {
+          activeImg.style.transition = '';
+          activeImg.style.transform  = 'scale(1)';
+          activeImg.style.opacity    = '1';
+        });
+      } else {
+        // Slide: next → incoming from right, prev → incoming from left
+        var inX  = direction > 0 ? '100%' : '-100%';
+        var outX = direction > 0 ? '-80%' : '80%';
+
+        incomingImg.src = src;
+        incomingImg.style.transition = 'none';
+        incomingImg.style.transform  = 'translateX(' + inX + ')';
+        incomingImg.style.opacity    = '1';
+
+        // Double rAF so the browser registers the start position before transitioning
+        requestAnimationFrame(function() {
+          requestAnimationFrame(function() {
+            incomingImg.style.transition = '';
+            incomingImg.style.transform  = 'translateX(0)';
+            activeImg.style.transition   = '';
+            activeImg.style.transform    = 'translateX(' + outX + ')';
+            activeImg.style.opacity      = '0';
+          });
+        });
+
+        // Swap which slot is "active" for next navigation
+        fsActiveSlot = fsActiveSlot === 'A' ? 'B' : 'A';
+      }
+    }
+
+    function closeFullscreen() {
+      fsView.classList.remove('active');
+    }
+
+    fsBack.addEventListener('click', closeFullscreen);
+
+    // Single handler for the entire image area: arrows navigate, everything else closes.
+    document.getElementById('fsImgArea').addEventListener('click', function(e) {
+      var s = SERIES[currentSeriesIdx];
+      if (e.target === fsPrev || fsPrev.contains(e.target)) {
+        if (currentImgIdx > 0) { currentImgIdx--; renderFullscreen(-1); }
+      } else if (e.target === fsNext || fsNext.contains(e.target)) {
+        if (currentImgIdx < s.images.length - 1) { currentImgIdx++; renderFullscreen(1); }
+      } else {
+        closeFullscreen();
+      }
+    });
+    document.querySelector('.fs-caption-bar').addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        if (fsView.classList.contains('active')) { closeFullscreen(); }
+        else { closeLb(); }
+      }
+      if (fsView.classList.contains('active')) {
+        var s = SERIES[currentSeriesIdx];
+        if (e.key === 'ArrowLeft'  && currentImgIdx > 0) { currentImgIdx--; renderFullscreen(-1); }
+        if (e.key === 'ArrowRight' && currentImgIdx < s.images.length - 1) { currentImgIdx++; renderFullscreen(1); }
+      }
+    });
+
+    // ── Cursor ────────────────────────────────────
+    var cursor = document.getElementById('cursor');
+    var ring   = document.getElementById('cursorRing');
+    var mx = 0, my = 0, rx = 0, ry = 0;
+    var prevMx = 0, prevMy = 0;
+    var vx = 0, vy = 0;          // smoothed velocity
+    var clickScale = 1, clickTarget = 1;
+
+    document.addEventListener('mousemove', function(e) { mx = e.clientX; my = e.clientY; });
+    document.addEventListener('mousedown', function() { clickTarget = 0.35; });
+    document.addEventListener('mouseup',   function() {
+      clickTarget = 1.5;
+      setTimeout(function() { clickTarget = 1; }, 120);
+    });
+
+    function animateCursor() {
+      // Velocity (smoothed)
+      vx += ((mx - prevMx) - vx) * 0.25;
+      vy += ((my - prevMy) - vy) * 0.25;
+      prevMx = mx; prevMy = my;
+
+      var speed   = Math.sqrt(vx * vx + vy * vy);
+      var angle   = Math.atan2(vy, vx) * 180 / Math.PI;
+      var stretch = Math.min(1 + speed * 0.014, 1.4);
+      var squish  = 1 / Math.sqrt(stretch);
+
+      // Click spring
+      clickScale += (clickTarget - clickScale) * 0.18;
+      if (clickTarget > 1 && clickScale > 1.45) clickTarget = 1;
+
+      cursor.style.left = mx + 'px';
+      cursor.style.top  = my + 'px';
+      cursor.style.transform = speed > 0.8
+        ? 'translate(-50%,-50%) rotate(' + angle + 'deg) scaleX(' + (stretch * clickScale) + ') scaleY(' + (squish * clickScale) + ')'
+        : 'translate(-50%,-50%) scale(' + clickScale + ')';
+
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animateCursor);
+    }
+    animateCursor();
+
+    document.querySelectorAll('a, button').forEach(function(el) {
+      el.addEventListener('mouseenter', function() { ring.style.width = '56px'; ring.style.height = '56px'; });
+      el.addEventListener('mouseleave', function() { ring.style.width = '36px'; ring.style.height = '36px'; });
+    });
+
+    // ── Scroll reveal ─────────────────────────────
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(e) { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(function(el) { observer.observe(el); });
+
+    // ── Page load fade ────────────────────────────
+    var cover = document.getElementById('page-cover');
+    window.addEventListener('load', function() {
+      requestAnimationFrame(function() {
+        cover.classList.add('fade-out');
+        setTimeout(function() { cover.style.display = 'none'; }, 1000);
+      });
+    });
+
+    // ── Nav hide/show on scroll ───────────────────
+    var navEl = document.querySelector('nav');
+    var heroSection = document.getElementById('hero');
+    var lastScrollY = window.scrollY;
+    window.addEventListener('scroll', function() {
+      var y = window.scrollY;
+      if (y > lastScrollY && y > 80) { navEl.classList.add('nav-hidden'); }
+      else { navEl.classList.remove('nav-hidden'); }
+      lastScrollY = y;
+
+    }, { passive: true });
+
+    // ── ESC key ───────────────────────────────────
+    document.addEventListener('keydown', function(e) {
+      if (e.key !== 'Escape') return;
+      if (showingStatement) { closeStatement(); return; }
+      if (fsView.classList.contains('active')) { closeFullscreen(); return; }
+      if (lb.classList.contains('active')) { closeLb(); }
+    });
+
+    // ── Hero parallax + proximity scale ───────────
+    var heroImgEl = document.querySelector('.hero-img');
+    var heroParallax = 0;
+    var heroScale = 1, heroScaleTarget = 1;
+
+    function applyHeroTransform() {
+      heroImgEl.style.transform =
+        'translateY(' + heroParallax + 'px) scale(' + heroScale + ')';
+    }
+
+    window.addEventListener('scroll', function() {
+      if (!heroImgEl) return;
+      heroParallax = window.scrollY * 0.18;
+      applyHeroTransform();
+    }, { passive: true });
+
+    // Smooth scale toward target in rAF
+    (function tickHeroScale() {
+      heroScale += (heroScaleTarget - heroScale) * 0.08;
+      if (Math.abs(heroScaleTarget - heroScale) > 0.0005) applyHeroTransform();
+      requestAnimationFrame(tickHeroScale);
+    })();
+
+    // Proximity: grow as cursor nears the hero image
+    document.addEventListener('mousemove', function(e) {
+      if (!heroImgEl) return;
+      var rect = heroImgEl.getBoundingClientRect();
+      var cx = rect.left + rect.width  / 2;
+      var cy = rect.top  + rect.height / 2;
+      var dist = Math.sqrt(Math.pow(e.clientX - cx, 2) + Math.pow(e.clientY - cy, 2));
+      var range = 380;
+      heroScaleTarget = dist < range ? 1 + 0.06 * (1 - dist / range) : 1;
+    });
+
+    // ── Card focus / shrink neighbours ───────────
+    document.querySelectorAll('.projects-featured, .projects-archive').forEach(function(grid) {
+      grid.querySelectorAll('.project-card').forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          grid.classList.add('grid-active');
+          card.classList.add('card-focused');
+        });
+        card.addEventListener('mouseleave', function() {
+          grid.classList.remove('grid-active');
+          card.classList.remove('card-focused');
+        });
+      });
+    });
+
+
+    // ── Magnetic nav ──────────────────────────────
+    var navLinkEls = document.querySelectorAll('.nav-links a');
+    document.addEventListener('mousemove', function(e) {
+      navLinkEls.forEach(function(link) {
+        var rect = link.getBoundingClientRect();
+        var cx = rect.left + rect.width  / 2;
+        var cy = rect.top  + rect.height / 2;
+        var dx = e.clientX - cx;
+        var dy = e.clientY - cy;
+        var dist = Math.sqrt(dx * dx + dy * dy);
+        var range = 75;
+        if (dist < range) {
+          var pull = (1 - dist / range) * 0.38;
+          link.style.transform = 'translate(' + (dx * pull) + 'px, ' + (dy * pull) + 'px)';
+        } else {
+          link.style.transform = '';
+        }
+      });
+    });
+
+    // ── Hero throwing mechanic ─────────────────────
+    // indices 0-2 = bricks, 3-5 = baseballs
+    var THROW_SRCS  = [
+      'web/throwing/DSC04395.png',
+      'web/throwing/DSC04400.png',
+      'web/throwing/DSC04404.png',
+      'web/throwing/DSC04421.png',
+      'web/throwing/DSC04429.png',
+      'web/throwing/DSC04433.png'
+    ];
+    var _mobile = window.innerWidth < 700;
+    var THROW_SIZES = _mobile ? [200, 200, 200, 130, 130, 130] : [340, 340, 340, 220, 220, 220];
+    THROW_SRCS.forEach(function(s) { var i = new Image(); i.src = s; });
+    var _bi = new Image(); _bi.src = 'web/hero-broken.png';
+
+    // Tiles-in-bag
+    var throwBag = [];
+    function refillBag() { throwBag = [0,1,2,3,4,5].slice().sort(function() { return Math.random() - 0.5; }); }
+    function nextFromBag() { if (!throwBag.length) refillBag(); return throwBag.pop(); }
+    refillBag();
+
+    var heroHits = 0, MAX_HITS = 7, heroBroken = false;
+    var heroImgRef = document.getElementById('heroImg');
+    var heroSection = document.getElementById('hero');
+
+    // ── Callouts ────────────────────────────────────
+    var CALLOUT_MSGS = [
+      'probably.',
+      'a day occurred',
+      'accumulation',
+      "everybody's object",
+      'pretty',
+      'considered position',
+      'same hand',
+      'the baseballs',
+      'arrived',
+      'machine',
+      'not failure',
+      "nobody's",
+      'five?',
+      'still in the kiln',
+      'crystallized',
+      'I did not engineer this'
+    ];
+
+    var heroCalloutEl = null, heroCycleTimeout = null, heroLastMsgIdx = -1, heroStartTimeout = null;
+
+    function randomMsg() {
+      var idx;
+      do { idx = Math.floor(Math.random() * CALLOUT_MSGS.length); } while (idx === heroLastMsgIdx);
+      heroLastMsgIdx = idx;
+      return CALLOUT_MSGS[idx];
+    }
+
+    function spawnCallout(x, y, msg, sticky) {
+      // Force-dismiss any non-sticky existing callout immediately
+      var old = heroCalloutEl;
+      if (old && !old._sticky) {
+        old._dying = true;
+        old.classList.remove('visible');
+        setTimeout(function() { if (old.parentNode) old.remove(); }, 550);
+      }
+      var el = document.createElement('div');
+      el.className = 'hero-callout';
+      el._sticky = !!sticky;
+      el.textContent = msg;
+      document.body.appendChild(el);
+      heroCalloutEl = el;
+      requestAnimationFrame(function() {
+        if (el._dying) return; // aborted before rAF fired
+        var cx = Math.max(8, Math.min(x - 14, window.innerWidth - el.offsetWidth - 8));
+        el.style.left = cx + 'px';
+        el.style.top  = (y + window.scrollY - el.offsetHeight - 18) + 'px';
+        el.classList.add('visible');
+      });
+      return el;
+    }
+
+    // Returns the actual rendered rect of the image inside its object-fit:contain container
+    function containedRect(img) {
+      var cr  = img.getBoundingClientRect();
+      var nw  = img.naturalWidth, nh = img.naturalHeight;
+      if (!nw || !nh) return cr;
+      var sc  = Math.min(cr.width / nw, cr.height / nh);
+      var rw  = nw * sc, rh = nh * sc;
+      return { left: cr.left + (cr.width - rw) / 2, top: cr.top + (cr.height - rh) / 2, width: rw, height: rh };
+    }
+
+    // Stack occupies x: 33–65%, y: 6–97% of hero-new.png (pixel-sampled bounds)
+    function randomColoredPos() {
+      var ir = containedRect(heroImgRef);
+      return {
+        x: ir.left + ir.width  * (0.34 + Math.random() * 0.30),
+        y: ir.top  + ir.height * (0.07 + Math.random() * 0.88)
+      };
+    }
+
+    function scheduleAmbient() {
+      clearTimeout(heroCycleTimeout);
+      if (heroBroken) return;
+      heroCycleTimeout = setTimeout(function() {
+        if (heroBroken) return;
+        try {
+          var pos = randomColoredPos();
+          spawnCallout(pos.x, pos.y, randomMsg());
+        } catch(_) {}
+        scheduleAmbient(); // always reschedule
+      }, 4500 + Math.random() * 3000);
+    }
+
+    function startCycle() {
+      if (heroBroken) return;
+      var pos = randomColoredPos();
+      spawnCallout(pos.x, pos.y, randomMsg());
+      scheduleAmbient();
+    }
+    if (heroImgRef.complete) { heroStartTimeout = setTimeout(startCycle, 5000); }
+    else { heroImgRef.addEventListener('load', function() { heroStartTimeout = setTimeout(startCycle, 5000); }); }
+
+    // ── Lob throw — quadratic bezier, always arcs up then down ──
+    function spawnThrow(clickX, clickY) {
+      var idx  = nextFromBag();
+      var sz   = THROW_SIZES[idx];
+      var obj  = document.createElement('img');
+      obj.src  = THROW_SRCS[idx];
+      obj.style.cssText = 'position:fixed;width:'+sz+'px;height:'+sz+'px;object-fit:contain;pointer-events:none;z-index:200;left:'+clickX+'px;top:'+clickY+'px;transform:translate(-50%,-50%);will-change:transform,left,top;';
+      document.body.appendChild(obj);
+
+      var rect     = heroImgRef.getBoundingClientRect();
+      var endX     = rect.left + rect.width  * 0.5;
+      var endY     = rect.top  + rect.height * 0.42;
+      // Control point: always well above both endpoints for a genuine lob
+      var arcLift  = 180 + Math.random() * 120;
+      var ctrlX    = (clickX + endX) / 2;
+      var ctrlY    = Math.min(clickY, endY) - arcLift;
+      var dur      = 1000; // 1 second
+      var startRot = Math.random() * 40 - 20;
+      var spin     = (Math.random() < 0.5 ? 1 : -1) * (180 + Math.random() * 180); // deg total
+      var t0       = null;
+
+      function frame(ts) {
+        if (!t0) t0 = ts;
+        var t  = Math.min(1, (ts - t0) / dur);
+        var mt = 1 - t;
+        // Quadratic bezier
+        var x  = mt*mt*clickX + 2*mt*t*ctrlX + t*t*endX;
+        var y  = mt*mt*clickY + 2*mt*t*ctrlY + t*t*endY;
+        var rot   = startRot + spin * t;
+        var scale = 1 - t * 0.25; // shrinks from 1 → 0.75 as it reaches the stack
+        obj.style.left      = x + 'px';
+        obj.style.top       = y + 'px';
+        obj.style.transform = 'translate(-50%,-50%) rotate(' + rot + 'deg) scale(' + scale + ')';
+        if (t < 1) { requestAnimationFrame(frame); }
+        else { obj.remove(); onHit(endX, endY); }
+      }
+      requestAnimationFrame(frame);
+    }
+
+    function onHit(x, y) {
+      // Starburst at impact
+      var burst = document.createElement('div');
+      burst.className = 'hero-burst';
+      burst.style.left = x + 'px';
+      burst.style.top  = y + 'px';
+      document.body.appendChild(burst);
+      burst.addEventListener('animationend', function() { burst.remove(); });
+
+      // Shake image — works on both stack and broken brick
+      heroImgRef.classList.remove('hit');
+      void heroImgRef.offsetWidth;
+      heroImgRef.classList.add('hit');
+      setTimeout(function() { heroImgRef.classList.remove('hit'); }, 400);
+
+      if (heroBroken) {
+        // Callout near the broken image center (not on the stack bounds)
+        var BROKEN_MSGS = ['still here.', 'entropy.', 'not failure', 'another kind of making', 'the shards remain'];
+        var br = heroImgRef.getBoundingClientRect();
+        var bx = br.left + br.width  * (0.35 + Math.random() * 0.30);
+        var by = br.top  + br.height * (0.25 + Math.random() * 0.50);
+        spawnCallout(bx, by, BROKEN_MSGS[Math.floor(Math.random() * BROKEN_MSGS.length)]);
+        return;
+      }
+
+      heroHits++;
+      if (heroHits >= MAX_HITS) {
+        // Don't spawn a hit callout — explosion handles its own
+        triggerExplosion(x, y);
+        return;
+      }
+      // Callout spawns where ball hit
+      spawnCallout(x, y, randomMsg());
+      scheduleAmbient();
+    }
+
+    function triggerExplosion(ex, ey) {
+      heroBroken = true;
+      clearTimeout(heroCycleTimeout);
+      clearTimeout(heroStartTimeout);
+
+      // Hard-dismiss any lingering callout now
+      var dying = heroCalloutEl;
+      if (dying && !dying._sticky) {
+        dying._dying = true;
+        dying.classList.remove('visible');
+        heroCalloutEl = null;
+        setTimeout(function() { if (dying.parentNode) dying.remove(); }, 550);
+      }
+
+      // Screen flash
+      var flash = document.createElement('div');
+      flash.className = 'explosion-flash';
+      document.body.appendChild(flash);
+      flash.addEventListener('animationend', function() { flash.remove(); });
+
+      // Screen shake
+      document.body.classList.add('shaking');
+      setTimeout(function() { document.body.classList.remove('shaking'); }, 500);
+
+      // Expanding rings
+      [0, 110, 230].forEach(function(delay, i) {
+        setTimeout(function() {
+          var ring = document.createElement('div');
+          ring.className = 'explosion-ring';
+          var sz = 200 + i * 170;
+          ring.style.cssText = 'width:'+sz+'px;height:'+sz+'px;left:'+ex+'px;top:'+ey+'px;animation:explode-ring '+(0.6+i*0.15)+'s ease-out forwards';
+          document.body.appendChild(ring);
+          ring.addEventListener('animationend', function() { ring.remove(); });
+        }, delay);
+      });
+
+      // Image fragments — canvas tiles of hero
+      try {
+        var tmp = document.createElement('canvas');
+        var COLS = 5, ROWS = 6;
+        var rect = heroImgRef.getBoundingClientRect();
+        tmp.width  = heroImgRef.naturalWidth  || rect.width;
+        tmp.height = heroImgRef.naturalHeight || rect.height;
+        tmp.getContext('2d').drawImage(heroImgRef, 0, 0, tmp.width, tmp.height);
+        var fw = tmp.width/COLS, fh = tmp.height/ROWS;
+        for (var row = 0; row < ROWS; row++) {
+          for (var col = 0; col < COLS; col++) {
+            (function(r, c) {
+              var fc = document.createElement('canvas');
+              fc.width = fw; fc.height = fh;
+              fc.getContext('2d').drawImage(tmp, c*fw, r*fh, fw, fh, 0, 0, fw, fh);
+              var fragW = rect.width/COLS, fragH = rect.height/ROWS;
+              var fragX = rect.left + c*fragW + fragW/2;
+              var fragY = rect.top  + r*fragH + fragH/2;
+              fc.style.cssText = 'position:fixed;left:'+fragX+'px;top:'+fragY+'px;width:'+fragW+'px;height:'+fragH+'px;transform:translate(-50%,-50%);pointer-events:none;z-index:300;';
+              document.body.appendChild(fc);
+              var ang = Math.atan2(fragY-ey, fragX-ex) + (Math.random()-0.5)*1.2;
+              var d   = 180 + Math.random()*300;
+              var tx  = Math.cos(ang)*d, ty = Math.sin(ang)*d - 60 - Math.random()*120;
+              var rot = Math.random()*400-200, dur = 0.55+Math.random()*0.55;
+              requestAnimationFrame(function() {
+                fc.style.transition = 'transform '+dur+'s cubic-bezier(0.16,1,0.3,1), opacity '+dur+'s ease-out';
+                fc.style.transform  = 'translate(calc(-50% + '+tx+'px), calc(-50% + '+ty+'px)) rotate('+rot+'deg) scale(0.25)';
+                fc.style.opacity    = '0';
+              });
+              setTimeout(function() { fc.remove(); }, dur*1000+150);
+            })(row, col);
+          }
+        }
+      } catch(_) {
+        for (var si = 0; si < 24; si++) {
+          (function(i) {
+            var s = document.createElement('div');
+            s.className = 'explosion-shard';
+            var ang = (Math.PI*2/24)*i+(Math.random()-0.5)*0.4;
+            var d = 120+Math.random()*280, sz = 4+Math.random()*10;
+            var rot = Math.random()*720-360, dur = 0.5+Math.random()*0.5;
+            s.style.cssText = 'width:'+sz+'px;height:'+(sz*(0.3+Math.random()*0.7))+'px;left:'+ex+'px;top:'+ey+'px;background:'+(Math.random()>0.4?'var(--ember)':'var(--clay)')+';animation:explode-shard '+dur+'s ease-out forwards;transition:none;';
+            document.body.appendChild(s);
+            requestAnimationFrame(function() {
+              s.style.transition = 'transform '+dur+'s cubic-bezier(0.16,1,0.3,1)';
+              s.style.transform  = 'translate(calc(-50% + '+(Math.cos(ang)*d)+'px), calc(-50% + '+(Math.sin(ang)*d-40-Math.random()*80)+'px)) rotate('+rot+'deg) scale(0.3)';
+            });
+            setTimeout(function() { s.remove(); }, dur*1000+100);
+          })(si);
+        }
+      }
+
+      // Big central burst
+      var mb = document.createElement('div');
+      mb.className = 'hero-burst';
+      mb.style.left = ex+'px'; mb.style.top = ey+'px';
+      mb.style.width = '500px'; mb.style.height = '500px';
+      document.body.appendChild(mb);
+      mb.addEventListener('animationend', function() { mb.remove(); });
+
+      // Swap image
+      heroImgRef.style.transition = 'none';
+      heroImgRef.style.opacity = '0';
+      setTimeout(function() {
+        heroImgRef.src = 'web/hero-broken.png';
+        heroImgRef.classList.add('broken');
+        heroImgRef.style.transition = 'opacity 0.4s ease';
+        heroImgRef.style.opacity = '1';
+      }, 180);
+
+      // "you broke it" — sticky callout at impact point
+      setTimeout(function() {
+        spawnCallout(ex, ey, 'you broke it :(');
+      }, 700);
+    }
+
+    // ── Regenerate when hero scrolls out of view ─────
+    var heroObserver = new IntersectionObserver(function(entries) {
+      if (!entries[0].isIntersecting && heroBroken) {
+        heroBroken  = false;
+        heroHits    = 0;
+        heroImgRef.src = 'web/hero-new.png';
+        heroImgRef.classList.remove('broken');
+        heroImgRef.style.opacity = '1';
+        // Dismiss any lingering callout
+        var dying = heroCalloutEl;
+        heroCalloutEl = null;
+        if (dying) {
+          dying.classList.remove('visible');
+          setTimeout(function() { if (dying.parentNode) dying.remove(); }, 550);
+        }
+        // Restart ambient cycle when they scroll back
+        clearTimeout(heroStartTimeout);
+        heroStartTimeout = setTimeout(startCycle, 2000);
+      }
+    }, { threshold: 0 });
+    heroObserver.observe(heroSection);
+
+    // Throw zone: whole hero section
+    heroSection.addEventListener('click', function(e) {
+      // Don't steal clicks from nav-cta or other interactive elements
+      if (e.target.closest('a, button')) return;
+      spawnThrow(e.clientX, e.clientY);
+    });
+
+    // ── Hamburger menu ──────────────────────────────
+    // ── Earlier Work toggle ──────────────────────────
+    var earlierToggle = document.getElementById('earlierWorkToggle');
+    var earlierGrid   = document.getElementById('earlierWorkGrid');
+    earlierToggle.addEventListener('click', function() {
+      earlierToggle.classList.toggle('open');
+      earlierGrid.classList.toggle('open');
+    });
+
+    var hamburger = document.getElementById('navHamburger');
+    var mobileNav = document.getElementById('mobileNav');
+
+    hamburger.addEventListener('click', function() {
+      hamburger.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+
+    document.getElementById('mobileNavClose').addEventListener('click', function() {
+      hamburger.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+
+    mobileNav.querySelectorAll('a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        hamburger.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // ── Touch swipe for fullscreen gallery ──────────
+    var touchStartX = 0, touchStartY = 0, touchStartTime = 0;
+    var swipeThreshold = 50, swipeTimeLimit = 300;
+
+    fsView.addEventListener('touchstart', function(e) {
+      if (e.target === fsPrev || e.target === fsNext || e.target === fsBack) return;
+      var t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartTime = Date.now();
+    }, { passive: true });
+
+    fsView.addEventListener('touchend', function(e) {
+      if (e.target === fsPrev || e.target === fsNext || e.target === fsBack) return;
+      if (!touchStartTime) return;
+      var t = e.changedTouches[0];
+      var dx = t.clientX - touchStartX;
+      var dy = t.clientY - touchStartY;
+      var dt = Date.now() - touchStartTime;
+      touchStartTime = 0;
+
+      if (dt > swipeTimeLimit || Math.abs(dy) > Math.abs(dx)) return;
+
+      var s = SERIES[currentSeriesIdx];
+      if (dx < -swipeThreshold && currentImgIdx < s.images.length - 1) {
+        currentImgIdx++; renderFullscreen(1);
+      } else if (dx > swipeThreshold && currentImgIdx > 0) {
+        currentImgIdx--; renderFullscreen(-1);
+      }
+    }, { passive: true });
+
+    // ── Hide custom cursor on touch devices ─────────
+    var hasTouch = false;
+    window.addEventListener('touchstart', function onFirstTouch() {
+      hasTouch = true;
+      cursor.style.display = 'none';
+      ring.style.display = 'none';
+      document.body.style.cursor = 'auto';
+      window.removeEventListener('touchstart', onFirstTouch);
+    }, { passive: true });
+
+  </script>
+</body>
+</html>
