@@ -7,34 +7,35 @@
   <meta name="description" content="Jonah Dichter is a ceramic artist based in Rochester, NY. His practice centers on bricks, baseballs, and vessels — objects that raise questions about labor, familiarity, and what a material remembers." />
   <meta property="og:title" content="Jonah Dichter — Ceramics" />
   <meta property="og:description" content="Bricks, baseballs, and vessels in fired stoneware. Ceramic practice organized around objects and the questions they raise." />
-  <meta property="og:image" content="https://jonahdichter.com/web/hero-new.png" />
+  <meta property="og:image" content="https://jonahdichter.com/web/cradles/cradles-2.jpg" />
   <meta property="og:url" content="https://jonahdichter.com" />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jonah Dichter — Portfolio" />
   <meta name="twitter:description" content="Bricks, baseballs, and vessels in fired stoneware. Ceramic practice organized around objects and the questions they raise." />
-  <meta name="twitter:image" content="https://jonahdichter.com/web/hero-new.png" />
+  <meta name="twitter:image" content="https://jonahdichter.com/web/cradles/cradles-2.jpg" />
   <link rel="canonical" href="https://jonahdichter.com" />
   <link rel="icon" type="image/png" href="favicon.png?v=2" />
-  <link rel="preload" as="image" href="web/hero-broken.png" />
-  <link rel="preload" as="image" href="web/hero-new.png" />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=IBM+Plex+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"/>
+  <link rel="preload" as="image" href="web/hero-pallet-broken.png" />
+  <link rel="preload" as="image" href="web/hero-pallet.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet"/>
   <style>
     :root {
-      --clay:      #3d6fcc;
-      --ember:     #c42040;
-      --ash:       #111218;
-      --smoke:     #181824;
-      --parchment: #e8ecf5;
-      --chalk:     #d4d8ea;
+      --clay:      #b39a78;
+      --ember:     #a8342a;
+      --ash:       #141011;
+      --smoke:     #1d1719;
+      --parchment: #e6dccb;
+      --chalk:     #cbc2b2;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
       background: var(--ash);
       color: var(--chalk);
-      font-family: 'IBM Plex Mono', monospace;
-      font-size: 14px;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 16px;
+      font-weight: 500;
       line-height: 1.6;
       overflow-x: hidden;
       cursor: none;
@@ -102,7 +103,7 @@
     nav.nav-hidden { transform: translateY(-110%); }
     nav::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(to bottom, rgba(17,18,24,0.96) 0%, transparent 100%);
+      background: linear-gradient(to bottom, rgba(20,16,17,0.96) 0%, transparent 100%);
       pointer-events: none;
     }
     .nav-logo {
@@ -139,10 +140,10 @@
       font-weight: 900; line-height: 0.9;
       color: var(--parchment); margin-bottom: 2rem;
     }
-    .hero-name em { font-style: italic; color: var(--clay); display: block; }
+    .hero-name em { font-style: normal; color: inherit; display: block; }
     .hero-tagline {
       max-width: 360px; color: var(--clay);
-      font-size: 0.8rem; line-height: 1.8; margin-bottom: 3rem;
+      font-size: 1.1rem; line-height: 1.6; margin-bottom: 3rem;
       border-left: 2px solid var(--ember); padding-left: 1.2rem;
     }
     .hero-cta {
@@ -167,7 +168,7 @@
     }
     .hero-placeholder {
       position: absolute; inset: 0;
-      background: linear-gradient(135deg, #111218 0%, #181824 50%, #111218 100%);
+      background: linear-gradient(135deg, #141011 0%, #1d1719 50%, #141011 100%);
       display: flex; align-items: center; justify-content: center;
     }
     .hero-placeholder-label {
@@ -196,7 +197,7 @@
       font-size: clamp(2.5rem, 5vw, 5rem);
       font-weight: 900; line-height: 1; color: var(--parchment);
     }
-    .section-title em { font-style: italic; color: var(--clay); }
+    .section-title em { font-style: normal; color: inherit; }
 
     /* ── Work ── */
     #work { background: var(--smoke); }
@@ -227,31 +228,31 @@
     .project-card:hover .project-placeholder { transform: scale(1.04); }
     .project-placeholder::before {
       content: ''; position: absolute; inset: 0;
-      background: linear-gradient(135deg, var(--bg-a, #181824) 0%, var(--bg-b, #1e1e2e) 100%);
+      background: linear-gradient(135deg, var(--bg-a, #1d1719) 0%, var(--bg-b, #241d1f) 100%);
     }
     .project-placeholder-cross { position: absolute; inset: 0; pointer-events: none; }
     .project-placeholder-cross::before,
     .project-placeholder-cross::after {
       content: ''; position: absolute;
-      background: var(--accent, #c8a882); opacity: 0.08;
+      background: var(--accent, #b39a78); opacity: 0.08;
     }
     .project-placeholder-cross::before { left: 0; right: 0; top: 50%; height: 1px; }
     .project-placeholder-cross::after  { top: 0; bottom: 0; left: 50%; width: 1px; }
     .project-placeholder-text {
       position: relative; z-index: 1;
       font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
-      color: var(--accent, #c8a882); opacity: 0.35;
-      border: 1px solid var(--accent, #c8a882); padding: 0.4rem 0.9rem;
+      color: var(--accent, #b39a78); opacity: 0.35;
+      border: 1px solid var(--accent, #b39a78); padding: 0.4rem 0.9rem;
     }
     .project-card::after {
       content: 'View Series';
       position: absolute; top: 50%; left: 50%;
       transform: translate(-50%, -50%) scale(0.85);
       z-index: 10;
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
       color: var(--parchment);
-      background: rgba(196,32,64,0.85);
+      background: rgba(168,52,42,0.85);
       padding: 0.6rem 1.2rem;
       opacity: 0; transition: opacity 0.3s, transform 0.3s;
       pointer-events: none; white-space: nowrap;
@@ -260,7 +261,7 @@
     .project-label {
       position: absolute; bottom: 0; left: 0; right: 0; z-index: 5;
       padding: 1rem 1.5rem;
-      background: linear-gradient(to top, rgba(17,18,24,0.88) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(20,16,17,0.88) 0%, transparent 100%);
       display: flex; justify-content: space-between; align-items: flex-end;
     }
     .project-label-title {
@@ -268,6 +269,13 @@
       font-size: 1rem; color: var(--parchment);
     }
     .project-label-year { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); }
+
+    /* ── Panoramic lead card (most recent installation) ── */
+    .projects-lead { margin-bottom: 1.5rem; }
+    .projects-lead .project-card { aspect-ratio: 3/1; }
+    .projects-lead .project-card img.project-img { object-position: 50% 78%; }
+    .projects-lead .project-label-title { font-size: 1.3rem; }
+    @media (max-width: 900px) { .projects-lead .project-card { aspect-ratio: 2/1; } }
 
     /* ── Featured cards ── */
     .projects-featured {
@@ -296,8 +304,9 @@
     .earlier-work-toggle {
       display: flex; align-items: center; gap: 1.2rem;
       width: 100%; background: none; border: none; cursor: pointer;
-      margin-bottom: 0; margin-top: 1rem; padding: 0.6rem 0;
-      text-align: left;
+      margin: 1rem 0 0; padding: 0.6rem 0;
+      text-align: left; appearance: none; -webkit-appearance: none;
+      box-sizing: border-box;
     }
     .earlier-work-toggle::before,
     .earlier-work-toggle::after {
@@ -307,13 +316,13 @@
     .earlier-work-toggle span {
       font-size: 0.65rem; letter-spacing: 0.25em; text-transform: uppercase;
       color: var(--clay); white-space: nowrap;
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       transition: color 0.2s;
       display: flex; align-items: center; gap: 0.7rem;
-      border: 1px solid rgba(61,111,204,0.25);
+      border: 1px solid rgba(179,154,120,0.25);
       padding: 0.35rem 0.9rem;
     }
-    .earlier-work-toggle:hover span { color: var(--parchment); border-color: rgba(61,111,204,0.5); }
+    .earlier-work-toggle:hover span { color: var(--parchment); border-color: rgba(179,154,120,0.5); }
     .earlier-work-toggle .toggle-arrow {
       display: inline-block;
       transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
@@ -323,18 +332,16 @@
 
     /* collapsible grid */
     .projects-archive--older {
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 0.75rem;
       overflow: hidden;
       max-height: 0;
       opacity: 0;
       margin-top: 0;
       transition: max-height 0.55s cubic-bezier(0.22, 1, 0.36, 1),
-                  opacity   0.4s ease,
+                  opacity    0.4s ease,
                   margin-top 0.35s ease;
     }
     .projects-archive--older.open {
-      max-height: 1000px;
+      max-height: 1200px;
       opacity: 1;
       margin-top: 1.5rem;
     }
@@ -393,7 +400,7 @@
     }
     .statement-body p {
       margin-bottom: 1.4rem; color: var(--clay);
-      font-size: 0.8rem; line-height: 2;
+      font-size: 1.12rem; line-height: 1.75;
     }
     .statement-body p:first-of-type { color: var(--chalk); }
 
@@ -404,7 +411,7 @@
     .cv-section-title {
       font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
       color: var(--ember); margin-bottom: 1.5rem;
-      padding-bottom: 0.5rem; border-bottom: 1px solid rgba(196,32,64,0.2);
+      padding-bottom: 0.5rem; border-bottom: 1px solid rgba(168,52,42,0.2);
     }
     .cv-item { margin-bottom: 1.5rem; }
     .cv-item-header {
@@ -416,8 +423,8 @@
       font-size: 1rem; color: var(--parchment);
     }
     .cv-item-date { font-size: 0.65rem; letter-spacing: 0.1em; color: var(--clay); opacity: 0.6; white-space: nowrap; }
-    .cv-item-sub { font-size: 0.78rem; color: var(--chalk); line-height: 1.7; }
-    .cv-item-detail { font-size: 0.72rem; color: var(--clay); margin-top: 0.2rem; line-height: 1.6; }
+    .cv-item-sub { font-size: 1rem; color: var(--chalk); line-height: 1.7; }
+    .cv-item-detail { font-size: 0.92rem; color: var(--clay); margin-top: 0.2rem; line-height: 1.6; }
 
     /* ── Contact ── */
     #contact { background: var(--smoke); text-align: center; padding: 9rem 3rem; }
@@ -429,7 +436,7 @@
       font-weight: 900; line-height: 0.9;
       color: var(--parchment); margin: 1.5rem auto 3rem;
     }
-    .contact-title em { font-style: italic; color: var(--clay); display: block; }
+    .contact-title em { font-style: normal; color: inherit; display: block; }
     .contact-email {
       font-family: 'Playfair Display', serif; font-style: italic;
       font-size: clamp(1rem, 2vw, 1.4rem);
@@ -456,7 +463,7 @@
     footer {
       background: var(--ash); padding: 2rem 3rem;
       display: flex; justify-content: space-between; align-items: center;
-      border-top: 1px solid rgba(61,111,204,0.08);
+      border-top: 1px solid rgba(179,154,120,0.08);
     }
     footer span { font-size: 0.6rem; letter-spacing: 0.15em; color: var(--clay); opacity: 0.4; }
 
@@ -558,14 +565,14 @@
       font-size: 1.2rem; color: var(--parchment);
     }
     .lightbox-title span {
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.6rem; letter-spacing: 0.2em;
       color: var(--clay); margin-left: 1rem; text-transform: uppercase;
     }
     .lightbox-controls { display: flex; gap: 1.5rem; align-items: center; }
     .lb-stmt-btn {
-      background: none; border: 1px solid rgba(61,111,204,0.3); cursor: none;
-      color: var(--clay); font-family: 'IBM Plex Mono', monospace;
+      background: none; border: 1px solid rgba(179,154,120,0.3); cursor: none;
+      color: var(--clay); font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
       padding: 0.35rem 0.85rem; transition: all 0.2s;
     }
@@ -573,12 +580,12 @@
     .lb-stmt-btn.active { color: var(--parchment); border-color: var(--ember); }
     .lightbox-close {
       background: none; border: 1px solid var(--ember); cursor: none;
-      color: var(--ember); font-family: 'IBM Plex Mono', monospace;
+      color: var(--ember); font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
       padding: 0.45rem 1rem;
     }
-    .lightbox-close:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(196,32,64,0.15); }
+    .lightbox-close:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(168,52,42,0.15); }
 
     /* ── Full-screen image view ──
        Sits above the lightbox (z-index 3000).
@@ -609,8 +616,8 @@
     .fs-arrow {
       position: absolute; top: 50%; transform: translateY(-50%);
       background: none; border: none; cursor: none;
-      color: rgba(61,111,204,0.5);
-      font-family: 'IBM Plex Mono', monospace;
+      color: rgba(179,154,120,0.5);
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 1.4rem; padding: 1rem 1.4rem;
       transition: color 0.2s;
       z-index: 2;
@@ -626,7 +633,7 @@
       display: flex; justify-content: space-between; align-items: center;
       padding: 0.9rem 2rem;
       background: rgba(8,7,7,0.92);
-      border-top: 1px solid rgba(61,111,204,0.08);
+      border-top: 1px solid rgba(179,154,120,0.08);
     }
     .fs-caption-left { display: flex; flex-direction: column; gap: 0.2rem; }
     .fs-caption-text {
@@ -643,12 +650,12 @@
     }
     .fs-back {
       background: none; border: 1px solid var(--ember); cursor: none;
-      color: var(--ember); font-family: 'IBM Plex Mono', monospace;
+      color: var(--ember); font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
       transition: color 0.2s, border-color 0.2s, background 0.2s;
       padding: 0.45rem 1rem;
     }
-    .fs-back:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(196,32,64,0.15); }
+    .fs-back:hover { color: var(--parchment); border-color: var(--parchment); background: rgba(168,52,42,0.15); }
 
     /* ── Hamburger button ── */
     .nav-hamburger {
@@ -673,7 +680,7 @@
     .mobile-nav-overlay {
       display: none;
       position: fixed; inset: 0; z-index: 101;
-      background: rgba(17,18,24,0.97);
+      background: rgba(20,16,17,0.97);
       flex-direction: column; align-items: center; justify-content: center;
       gap: 2.5rem;
       opacity: 0; pointer-events: none;
@@ -690,7 +697,7 @@
     .mobile-nav-overlay a:hover { color: var(--ember); }
     .mobile-nav-close {
       position: absolute; top: 1.5rem; right: 1.5rem;
-      background: none; border: 1px solid rgba(61,111,204,0.3);
+      background: none; border: 1px solid rgba(179,154,120,0.3);
       color: var(--clay); cursor: pointer;
       font-size: 1.1rem; line-height: 1;
       width: 2.4rem; height: 2.4rem;
@@ -719,7 +726,7 @@
       .hero-right { height: 55vw; position: relative; }
       .hero-left { padding: 7rem 1.5rem 3rem; }
       .hero-name { font-size: clamp(3rem, 10vw, 5.5rem); }
-      .hero-tagline { font-size: 0.75rem; max-width: 90%; }
+      .hero-tagline { font-size: 1rem; max-width: 90%; }
 
       #statement { grid-template-columns: 1fr; gap: 2.5rem; }
       .statement-left { position: static; }
@@ -773,7 +780,7 @@
       .hero-left { padding: 5.5rem 1.2rem 2.5rem; }
       .hero-name { font-size: clamp(2.6rem, 12vw, 4rem); margin-bottom: 1.2rem; }
       .hero-eyebrow { font-size: 0.55rem; margin-bottom: 1rem; }
-      .hero-tagline { font-size: 0.72rem; margin-bottom: 2rem; max-width: 100%; }
+      .hero-tagline { font-size: 1rem; margin-bottom: 2rem; max-width: 100%; }
       .hero-right { height: 65vw; }
       .hero-index { bottom: 1rem; right: 1rem; font-size: 0.55rem; }
 
@@ -793,7 +800,7 @@
 
       .statement-quote { font-size: clamp(1.1rem, 4.5vw, 1.5rem); }
       .statement-quote::before { font-size: 6rem; top: -1rem; left: -0.5rem; }
-      .statement-body p { font-size: 0.75rem; line-height: 1.9; }
+      .statement-body p { font-size: 1.02rem; line-height: 1.7; }
 
       .cv-section-title { font-size: 0.55rem; }
       .cv-item-title { font-size: 0.8rem; }
@@ -930,7 +937,7 @@
       background: var(--ash);
       color: var(--parchment);
       border: 1px solid var(--clay);
-      font-family: 'IBM Plex Mono', monospace;
+      font-family: 'Cormorant Garamond', Georgia, serif;
       font-size: 0.65rem;
       letter-spacing: 0.12em;
       padding: 0.5rem 0.9rem;
@@ -989,7 +996,6 @@
   <!-- Hero -->
   <section id="hero">
     <div class="hero-left">
-      <p class="hero-eyebrow">Ceramics &amp; Studio Practice</p>
       <h1 class="hero-name">Jonah<br><em>Dichter</em></h1>
       <p class="hero-tagline">
         Time and transformation in fired clay — objects shaped by chemistry, labor, and the conditions of their making.
@@ -997,7 +1003,7 @@
       <a href="#work" class="hero-cta">View Work <span class="arrow"></span></a>
     </div>
     <div class="hero-right">
-      <img class="hero-img" src="web/hero-new.png" alt="Jonah Dichter — ceramic work" id="heroImg" />
+      <img class="hero-img" src="web/hero-pallet.png" alt="Cradles — porcelain pallet with a single brick" id="heroImg" />
     </div>
     <span class="hero-index">Rochester, NY</span>
   </section>
@@ -1007,7 +1013,7 @@
     <div class="work-header reveal">
       <div>
         <div class="section-label">Selected Work</div>
-        <h2 class="section-title">An<br><em>Accumulation</em></h2>
+        <h2 class="section-title">Portfolio</h2>
       </div>
       <span class="work-series">2024 – 2026</span>
     </div>
@@ -1015,6 +1021,17 @@
     <!-- Installations -->
     <div class="projects-archive-divider reveal">
       <span>Installations</span>
+    </div>
+
+    <div class="projects-lead">
+      <!-- SERIES[0] -->
+      <div class="project-card reveal">
+        <img class="project-img" src="web/cradles/cradles-2.jpg" alt="Cradles — white porcelain pallet with a single brick" />
+        <div class="project-label">
+          <span class="project-label-title">Cradles</span>
+          <span class="project-label-year">2026</span>
+        </div>
+      </div>
     </div>
 
     <div class="projects-featured">
@@ -1248,7 +1265,7 @@
 
   <footer>
     <span>&copy; 2026 Jonah Dichter</span>
-    <span>Ceramics &amp; Studio Practice &mdash; Rochester, NY</span>
+    <span>Rochester, NY</span>
   </footer>
 
   <!-- Tile-grid lightbox -->
@@ -1297,10 +1314,24 @@
     // images: array of { src, caption } objects
     // ─────────────────────────────────────────────
     var SERIES = [
+      // ── Cradles ───────────────────────────────────────────────
+      {
+        title: 'Cradles', year: '2026', cols: 3,
+        color: '#b39a78', bg: '#1d1719',
+        statement: 'The pallet is porcelain. It is not wood painted white; it is clay, the same material as the brick it carries. A pallet is built to carry bricks and is never looked at. This one was made, and fired, and its slats warped the way clay does. It holds a single brick. It cradles. Across the room, red glazed brick has collapsed onto char, bent past what it was made to hold. That one needed to be cradled.\n\nA brick and a computer are made from the same material. Both come out of silica, one at the purity of a ceramics studio and the other at the purity of a chip, and that difference of purity and scale decides what the same labor is worth. The pallet is the part of that chain nobody keeps: the unit that moves the unit. The tile on the wall is carried over from Ontological Dispute.',
+        images: [
+          { src: 'web/cradles/cradles-1.jpg', caption: 'Installation view' },
+          { src: 'web/cradles/cradles-2.jpg', caption: 'Porcelain pallet and brick' },
+          { src: 'web/cradles/cradles-3.jpg', caption: 'Tile and pallet' },
+          { src: 'web/cradles/cradles-4.jpg', caption: 'Collapse, in front of the window' },
+          { src: 'web/cradles/cradles-5.jpg', caption: 'Collapse, on char' },
+          { src: 'web/cradles/cradles-6.jpg', caption: 'Collapse, afternoon light' }
+        ]
+      },
       // ── [0] Days ──────────────────────────────────────────────
       {
         title: 'Days', year: '2026', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'Am I afraid of dying? Probably. Bricks are, among other things, an answer to that. Each one that comes out of the kiln is evidence that a day occurred — a record of having arrived, following my process, and staying in the studio until the cast was ready to open. The making is machinic, and the machine is me: a production cycle governed by time and sequence, replicating the logic of industrial labor by hand. The stacks are an accumulation of days. The question they eventually surface is not conceptual but arithmetic — why does my existence not add up to more than five?\n\nThe baseball indexes leisure where the brick indexes labor — the same hand, a different gesture. A bucket of them sits in the installation, objects that share the brick\'s democratic profile without entering its ontological field, their own inventory. The baseballs are where this is going — they are asking something the bricks have not yet answered.',
         images: [
           { src: 'web/final-install/final-install-21.jpg', caption: 'Hallway, looking in' },
@@ -1317,7 +1348,7 @@
       // ── [1] Ontological Dispute ─────────────────────────────────────────────
       {
         title: 'Ontological Dispute', year: '2026', cols: 4,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'A brick can be fired or unfired, glazed or raw, hand-formed or cast, functional or failed. These aren\'t variations on a brick. They are competing claims about what a brick is — ontological disputes dressed up as ceramic objects. Cast from the same mold, fired to the same temperature, with every other variable introduced. At what point does a brick stop being a brick? When it no longer looks like what you expect but still came from the same origin — is it still the thing, or only a sign of the thing?',
         images: [
           { src: 'web/ontological-dispute/geo-logic-installation.jpg',  caption: 'Installation view, 2026' },
@@ -1333,7 +1364,7 @@
       // ── [2] Objects ─────────────────────────────────────────────────────────
       {
         title: 'Objects', year: '2026', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'The brick occupies a peculiar position among commodities: it is everybody\'s object, and nobody\'s. The social relations of most manufactured goods are obscured within the commodity itself, appearing as the inherent properties of a thing rather than as evidence of human labor. The brick does not permit that mystification. Its status as an object of labor remains legible — it exists in the cultural imagination not as a neutral commodity but as crystallized working-class labor, as the material substrate of cities built by specific bodies under specific conditions.\n\nThe baseball indexes leisure where the brick indexes labor — the same hand, a different gesture.',
         images: [
           { src: 'web/final-product/final-product-27.jpg', caption: 'Bucket of baseballs' },
@@ -1358,7 +1389,7 @@
       // ── [3] Stacks ──────────────────────────────────────────────────────────
       {
         title: 'Stacks', year: '2026', cols: 4,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'The glazed brick stacks are pretty. That is a considered position, not an accident, and it requires some accounting. Because the brick carries such a profound ontological association with alienated labor, work that aestheticizes it — coating it in color and gloss and the language of refined ceramic production — is operating not at the level of labor itself but at the level of the aesthetic of labor. If the brick cannot shed its association with working bodies regardless of what is done to it — and I believe it cannot — then coating it in beauty is a means of pointing at that impossibility.\n\nThe most generative moments are where material exceeds its manufactured limits, where porcelain buckles and stacks shift past what they were designed to hold. That is not failure. It is where the material is most honestly itself.',
         images: [
           { src: 'web/final-stack/final-product-42.jpg', caption: 'Stack 1' },
@@ -1374,7 +1405,7 @@
       // ── [4] Process ─────────────────────────────────────────────────────────
       {
         title: 'Process', year: '2026', cols: 4,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'Midterm documentation — the work in progress before the final installation. The objects at an earlier stage: less finished, closer to raw material, the questions still open.',
         images: [
           { src: 'web/ontological-midterm/dichtersp26m-14.jpg', caption: 'Twisted Brick 1' },
@@ -1390,7 +1421,7 @@
       // ── [5] Thrown Objects ──────────────────────────────────────────────────
       {
         title: 'Thrown Objects', year: '2025', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'The brick exists before politics finds it. The same object builds and breaks. Stacked here — identically cast, each one waiting. The difference between a building material and an instrument of dissent is timing, circumstance, and who is asking.',
         images: [
           { src: 'web/thrown-objects/DSC03817.jpg', caption: 'Thrown Objects — stack study I' },
@@ -1404,7 +1435,7 @@
       // ── [6] geo|logic ───────────────────────────────────────────────────────
       {
         title: 'geo|logic', year: '2024', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'geo|logic is a series of destroyed vessels that juxtapose clay\'s return to a primordial state with the act of surveillance. These are performance pieces: they appear \'natural\' only because of deliberate intervention and inherited human bias. The universe tends toward entropy — the viewer may read these pieces as less ordered, closer to some entropic state — but they are exactly as finished as any functional ware or sculpture in this practice. Ruin is also a form of completion.',
         images: [
           { src: 'web/geologic/geologic-1.jpg', caption: 'geo|logic — overview' },
@@ -1418,7 +1449,7 @@
       // ── [7] Thrown Sculpture ────────────────────────────────────────────────
       {
         title: 'Thrown Sculpture', year: '2024', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'The potter\'s wheel is a constraint disguised as a tool. Every form it produces is rotationally symmetric — the same profile swept continuously around a central axis. This works for a bowl. It is strange for a fire hydrant.\n\nThese pieces began as an inquiry into that constraint: what the wheel can make, and what it cannot. The answer is that it can make almost anything, but only as a rotation — as if every object were secretly a vessel waiting to be found inside a spinning cylinder of clay. The hydrant, the bullet forms, the ambiguous others: each arrived through the same centripetal logic, hands pressing inward as the clay moved outward, coaxing a silhouette the tool was never designed to produce. The throwing marks remain visible not as texture but as evidence — a record of what it took to get there.',
         images: [
           { src: 'web/thrown-sculpture/thrown-sculpture-1.jpg', caption: 'Thrown Sculpture — fire hydrant, cobalt glaze' },
@@ -1432,7 +1463,7 @@
       // ── [8] Blue Pottery ────────────────────────────────────────────────────
       {
         title: 'Blue Pottery', year: '2024', cols: 4,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'Each piece here was made first as a functional object — to be held, filled, used. The cobalt glaze was chosen for its volatility: a single chemistry that reads navy, slate, or cerulean depending on temperature, thickness, and the light that falls on it. What appears to be a surface treatment is the same material as the vessel, made liquid and then permanent by fire.',
         images: [
           { src: 'web/pottery/pottery-1.jpg',    caption: 'Blue pottery — fired stoneware' },
@@ -1448,7 +1479,7 @@
       // ── [9] Drawn ───────────────────────────────────────────────────────────
       {
         title: 'Drawn', year: '2024', cols: 3,
-        color: '#3d6fcc', bg: '#181824',
+        color: '#b39a78', bg: '#1d1719',
         statement: 'These pieces begin with a single gesture — a finger drawn through wet slip before firing. The motion is the mark; the mark is the record of a specific moment of contact between hand and material. The resulting lines are not drawn in the illustrative sense but pulled: a body moving through a liquid medium, leaving a trace. Each pattern is unique to that pass, at that speed, at that pressure.',
         images: [
           { src: 'web/more-pots/drawn-1.jpg', caption: 'Drawn — platter, slip-trailed stoneware' },
@@ -1862,7 +1893,7 @@
     var _mobile = window.innerWidth < 700;
     var THROW_SIZES = _mobile ? [200, 200, 200, 130, 130, 130] : [340, 340, 340, 220, 220, 220];
     THROW_SRCS.forEach(function(s) { var i = new Image(); i.src = s; });
-    var _bi = new Image(); _bi.src = 'web/hero-broken.png';
+    var _bi = new Image(); _bi.src = 'web/hero-pallet-broken.png';
 
     // Tiles-in-bag
     var throwBag = [];
@@ -1937,14 +1968,16 @@
       return { left: cr.left + (cr.width - rw) / 2, top: cr.top + (cr.height - rh) / 2, width: rw, height: rh };
     }
 
-    // Stack occupies x: 33–65%, y: 6–97% of hero-new.png (pixel-sampled bounds)
-    function randomColoredPos() {
+    // Points sampled from the opaque parts of each hero image (fractions of the image),
+    // so callouts land on porcelain or rubble, never in the gaps between slats.
+    var HERO_PTS   = [[.665,.58],[.326,.626],[.614,.895],[.294,.27],[.634,.772],[.249,.311],[.696,.52],[.409,.198],[.868,.366],[.456,.685],[.666,.44],[.3,.501],[.365,.741],[.387,.137],[.45,.562],[.266,.388],[.768,.522],[.474,.754],[.351,.71],[.309,.359],[.169,.565],[.317,.408],[.665,.891],[.247,.699],[.348,.508],[.233,.44],[.821,.273],[.137,.49],[.763,.672],[.361,.618],[.709,.818],[.097,.549],[.675,.208],[.651,.785],[.235,.689],[.386,.417],[.377,.502],[.276,.285],[.722,.636],[.088,.525],[.697,.585],[.634,.911],[.343,.706],[.74,.73],[.251,.404],[.359,.721],[.565,.587],[.392,.419]];
+    var BROKEN_PTS = [[0.591,0.568],[0.222,0.619],[0.503,0.884],[0.496,0.258],[0.607,0.753],[0.548,0.286],[0.578,0.500],[0.620,0.194],[0.367,0.326],[0.403,0.676],[0.391,0.399],[0.726,0.478],[0.537,0.720],[0.463,0.137],[0.171,0.549],[0.320,0.344],[0.375,0.504],[0.291,0.733],[0.451,0.694],[0.233,0.320],[0.153,0.551],[0.311,0.363],[0.629,0.880],[0.761,0.685],[0.476,0.486],[0.673,0.399],[0.201,0.261],[0.163,0.465],[0.374,0.665],[0.592,0.609],[0.623,0.809],[0.509,0.534],[0.412,0.209],[0.542,0.769],[0.647,0.679],[0.658,0.372],[0.335,0.480],[0.644,0.269],[0.775,0.630],[0.213,0.507],[0.317,0.574],[0.604,0.898],[0.639,0.691],[0.467,0.711],[0.271,0.359],[0.401,0.703],[0.313,0.575],[0.787,0.374]];
+    function pointOn(pts) {
       var ir = containedRect(heroImgRef);
-      return {
-        x: ir.left + ir.width  * (0.34 + Math.random() * 0.30),
-        y: ir.top  + ir.height * (0.07 + Math.random() * 0.88)
-      };
+      var p  = pts[Math.floor(Math.random() * pts.length)];
+      return { x: ir.left + ir.width * p[0], y: ir.top + ir.height * p[1] };
     }
+    function randomColoredPos() { return pointOn(HERO_PTS); }
 
     function scheduleAmbient() {
       clearTimeout(heroCycleTimeout);
@@ -1977,9 +2010,9 @@
       obj.style.cssText = 'position:fixed;width:'+sz+'px;height:'+sz+'px;object-fit:contain;pointer-events:none;z-index:200;left:'+clickX+'px;top:'+clickY+'px;transform:translate(-50%,-50%);will-change:transform,left,top;';
       document.body.appendChild(obj);
 
-      var rect     = heroImgRef.getBoundingClientRect();
+      var rect     = containedRect(heroImgRef);   // centre of the pallet / pile
       var endX     = rect.left + rect.width  * 0.5;
-      var endY     = rect.top  + rect.height * 0.42;
+      var endY     = rect.top  + rect.height * 0.5;
       // Control point: always well above both endpoints for a genuine lob
       var arcLift  = 180 + Math.random() * 120;
       var ctrlX    = (clickX + endX) / 2;
@@ -2023,12 +2056,10 @@
       setTimeout(function() { heroImgRef.classList.remove('hit'); }, 400);
 
       if (heroBroken) {
-        // Callout near the broken image center (not on the stack bounds)
+        // Callout on the rubble
         var BROKEN_MSGS = ['still here.', 'entropy.', 'not failure', 'another kind of making', 'the shards remain'];
-        var br = heroImgRef.getBoundingClientRect();
-        var bx = br.left + br.width  * (0.35 + Math.random() * 0.30);
-        var by = br.top  + br.height * (0.25 + Math.random() * 0.50);
-        spawnCallout(bx, by, BROKEN_MSGS[Math.floor(Math.random() * BROKEN_MSGS.length)]);
+        var bp = pointOn(BROKEN_PTS);
+        spawnCallout(bp.x, bp.y, BROKEN_MSGS[Math.floor(Math.random() * BROKEN_MSGS.length)]);
         return;
       }
 
@@ -2143,7 +2174,7 @@
       heroImgRef.style.transition = 'none';
       heroImgRef.style.opacity = '0';
       setTimeout(function() {
-        heroImgRef.src = 'web/hero-broken.png';
+        heroImgRef.src = 'web/hero-pallet-broken.png';
         heroImgRef.classList.add('broken');
         heroImgRef.style.transition = 'opacity 0.4s ease';
         heroImgRef.style.opacity = '1';
@@ -2160,7 +2191,7 @@
       if (!entries[0].isIntersecting && heroBroken) {
         heroBroken  = false;
         heroHits    = 0;
-        heroImgRef.src = 'web/hero-new.png';
+        heroImgRef.src = 'web/hero-pallet.png';
         heroImgRef.classList.remove('broken');
         heroImgRef.style.opacity = '1';
         // Dismiss any lingering callout
